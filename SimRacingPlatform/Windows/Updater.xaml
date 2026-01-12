@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="SimRacingPlatform.Windows.Updater"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="SimRacingPlatform">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <Grid>
+        <!-- Center everything -->
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Spacing="18"
+            MaxWidth="380">
+
+            <!-- Logo -->
+            <Image
+                Source="ms-appx:///Assets/SquareLogo.png"
+                Width="180"
+                Height="180"
+                Stretch="Uniform"
+                HorizontalAlignment="Center" />
+
+            <!-- Title (optional) -->
+            <TextBlock
+                Text="Updating SimRacingPlatform"
+                FontSize="20"
+                FontWeight="SemiBold"
+                TextAlignment="Center"
+                HorizontalAlignment="Center" />
+
+            <!-- Progress text (change this in code-behind) -->
+            <TextBlock
+                x:Name="ProgressText"
+                Text="Preparing update..."
+                FontSize="14"
+                Opacity="0.85"
+                TextAlignment="Center"
+                TextWrapping="Wrap"
+                HorizontalAlignment="Center" />
+
+            <!-- Progress bar -->
+            <ProgressBar
+                x:Name="UpdateProgressBar"
+                Width="360"
+                Height="12"
+                Minimum="0"
+                Maximum="100"
+                Value="0" />
+
+            <!-- Percentage text (optional) -->
+            <TextBlock
+                x:Name="PercentText"
+                Text="0%"
+                FontSize="14"
+                Opacity="0.85"
+                TextAlignment="Center"
+                HorizontalAlignment="Center" />
+
+        </StackPanel>
+    </Grid>
+</Window>
