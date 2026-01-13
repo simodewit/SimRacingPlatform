@@ -2,6 +2,22 @@
   "version": 3,
   "targets": {
     "net8.0-windows10.0.19041": {
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Web.WebView2/1.0.3179.45": {
         "type": "package",
         "build": {
@@ -330,6 +346,19 @@
           "buildTransitive/Microsoft.WindowsAppSDK.WinUI.targets": {}
         }
       },
+      "Newtonsoft.Json/13.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "NuGet.Versioning/6.14.0": {
         "type": "package",
         "compile": {
@@ -359,6 +388,22 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "System.Text.Json/8.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/System.Text.Json.targets": {}
+        }
+      },
       "Velopack/0.0.1298": {
         "type": "package",
         "dependencies": {
@@ -377,6 +422,22 @@
       }
     },
     "net8.0-windows10.0.19041/win-arm64": {
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Web.WebView2/1.0.3179.45": {
         "type": "package",
         "native": {
@@ -664,6 +725,19 @@
           "buildTransitive/Microsoft.WindowsAppSDK.WinUI.targets": {}
         }
       },
+      "Newtonsoft.Json/13.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "NuGet.Versioning/6.14.0": {
         "type": "package",
         "compile": {
@@ -693,6 +767,22 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "System.Text.Json/8.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/System.Text.Json.targets": {}
+        }
+      },
       "Velopack/0.0.1298": {
         "type": "package",
         "dependencies": {
@@ -711,6 +801,22 @@
       }
     },
     "net8.0-windows10.0.19041/win-x64": {
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Web.WebView2/1.0.3179.45": {
         "type": "package",
         "native": {
@@ -998,6 +1104,19 @@
           "buildTransitive/Microsoft.WindowsAppSDK.WinUI.targets": {}
         }
       },
+      "Newtonsoft.Json/13.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "NuGet.Versioning/6.14.0": {
         "type": "package",
         "compile": {
@@ -1027,6 +1146,22 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "System.Text.Json/8.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/System.Text.Json.targets": {}
+        }
+      },
       "Velopack/0.0.1298": {
         "type": "package",
         "dependencies": {
@@ -1045,6 +1180,22 @@
       }
     },
     "net8.0-windows10.0.19041/win-x86": {
+      "FirebaseAuthentication.net/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Firebase.Auth.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Web.WebView2/1.0.3179.45": {
         "type": "package",
         "native": {
@@ -1332,6 +1483,19 @@
           "buildTransitive/Microsoft.WindowsAppSDK.WinUI.targets": {}
         }
       },
+      "Newtonsoft.Json/13.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "NuGet.Versioning/6.14.0": {
         "type": "package",
         "compile": {
@@ -1361,6 +1525,22 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "System.Text.Json/8.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/System.Text.Json.targets": {}
+        }
+      },
       "Velopack/0.0.1298": {
         "type": "package",
         "dependencies": {
@@ -1380,6 +1560,22 @@
     }
   },
   "libraries": {
+    "FirebaseAuthentication.net/4.1.0": {
+      "sha512": "pShi5v9cvT5bUWZDm261lO4uxJHvzOvpj46YHrL3uCB1WBeyCIcpoVakAQ2xHTu1dpmV86/BzSNRpqIGNp860g==",
+      "type": "package",
+      "path": "firebaseauthentication.net/4.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "firebase.png",
+        "firebaseauthentication.net.4.1.0.nupkg.sha512",
+        "firebaseauthentication.net.nuspec",
+        "lib/netstandard2.0/Firebase.Auth.dll",
+        "lib/netstandard2.0/Firebase.Auth.xml"
+      ]
+    },
     "Microsoft.Web.WebView2/1.0.3179.45": {
       "sha512": "3pokSH5CnN0G6rGhGFo1y87inxYhNxBQ2Vdf0wlvBj99KHxQJormjDACmqRnFeUsmuNFIhWwfAL1ztq7wD5qRA==",
       "type": "package",
@@ -3256,6 +3452,36 @@
         "tools/x86/GenXbf.dll"
       ]
     },
+    "Newtonsoft.Json/13.0.2": {
+      "sha512": "R2pZ3B0UjeyHShm9vG+Tu0EBb2lC8b0dFzV9gVn50ofHXh9Smjk6kTn7A/FdAsC8B5cKib1OnGYOXxRBz5XQDg==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.2.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "NuGet.Versioning/6.14.0": {
       "sha512": "4v4blkhCv8mpKtfx+z0G/X0daVCzdIaHSC51GkUspugi5JIMn2Bo8xm5PdZYF0U68gOBfz/+aPWMnpRd85Jbow==",
       "type": "package",
@@ -3301,6 +3527,79 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "System.Text.Json/8.0.5": {
+      "sha512": "0f1B50Ss7rqxXiaBJyzUu9bWFOO2/zSlifZ/UNMdiIpDYe4cY4LQQicP4nirK1OS31I43rn062UIJ1Q9bpmHpg==",
+      "type": "package",
+      "path": "system.text.json/8.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "analyzers/dotnet/roslyn3.11/cs/System.Text.Json.SourceGeneration.dll",
+        "analyzers/dotnet/roslyn3.11/cs/cs/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/de/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/es/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/fr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/it/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ja/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ko/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pl/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pt-BR/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ru/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/tr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hans/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hant/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/System.Text.Json.SourceGeneration.dll",
+        "analyzers/dotnet/roslyn4.0/cs/cs/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/de/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/es/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/fr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/it/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ja/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ko/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pl/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pt-BR/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ru/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/tr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hans/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hant/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/System.Text.Json.SourceGeneration.dll",
+        "analyzers/dotnet/roslyn4.4/cs/cs/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/de/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/es/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/fr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/it/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ja/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ko/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/pl/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/pt-BR/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ru/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/tr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/zh-Hans/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/zh-Hant/System.Text.Json.SourceGeneration.resources.dll",
+        "buildTransitive/net461/System.Text.Json.targets",
+        "buildTransitive/net462/System.Text.Json.targets",
+        "buildTransitive/net6.0/System.Text.Json.targets",
+        "buildTransitive/netcoreapp2.0/System.Text.Json.targets",
+        "buildTransitive/netstandard2.0/System.Text.Json.targets",
+        "lib/net462/System.Text.Json.dll",
+        "lib/net462/System.Text.Json.xml",
+        "lib/net6.0/System.Text.Json.dll",
+        "lib/net6.0/System.Text.Json.xml",
+        "lib/net7.0/System.Text.Json.dll",
+        "lib/net7.0/System.Text.Json.xml",
+        "lib/net8.0/System.Text.Json.dll",
+        "lib/net8.0/System.Text.Json.xml",
+        "lib/netstandard2.0/System.Text.Json.dll",
+        "lib/netstandard2.0/System.Text.Json.xml",
+        "system.text.json.8.0.5.nupkg.sha512",
+        "system.text.json.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "Velopack/0.0.1298": {
       "sha512": "PJ6Nm28qJ4ChsHYzgHUJ8g+DGyyHes2+bwxY709+znMhgi8fMp8M1FTF8x6pZMjnsPCWVwoMlxVEyq0NLeRZtA==",
       "type": "package",
@@ -3327,8 +3626,10 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows10.0.19041": [
+      "FirebaseAuthentication.net >= 4.1.0",
       "Microsoft.Windows.SDK.BuildTools >= 10.0.26100.7463",
       "Microsoft.WindowsAppSDK >= 1.8.251106002",
+      "System.Text.Json >= 8.0.5",
       "Velopack >= 0.0.1298"
     ]
   },
@@ -3381,6 +3682,10 @@
       "net8.0-windows10.0.19041": {
         "targetAlias": "net8.0-windows10.0.19041.0",
         "dependencies": {
+          "FirebaseAuthentication.net": {
+            "target": "Package",
+            "version": "[4.1.0, )"
+          },
           "Microsoft.Windows.SDK.BuildTools": {
             "target": "Package",
             "version": "[10.0.26100.7463, )"
@@ -3388,6 +3693,11 @@
           "Microsoft.WindowsAppSDK": {
             "target": "Package",
             "version": "[1.8.251106002, )"
+          },
+          "System.Text.Json": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[8.0.5, )"
           },
           "Velopack": {
             "target": "Package",

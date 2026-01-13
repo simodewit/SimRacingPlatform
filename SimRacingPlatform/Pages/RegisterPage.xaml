@@ -1,0 +1,94 @@
+<Page
+    x:Class="SimRacingPlatform.Pages.RegisterPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!-- Background -->
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <!-- Centered, rounded register panel -->
+        <Border
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="420"
+            MaxWidth="520"
+            Padding="28"
+            CornerRadius="18"
+            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1">
+
+            <Border.Shadow>
+                <ThemeShadow />
+            </Border.Shadow>
+
+            <StackPanel Spacing="14">
+
+                <!-- Logo -->
+                <Image
+                    Height="72"
+                    HorizontalAlignment="Center"
+                    Stretch="Uniform"
+                    Source="ms-appx:///Assets/Logo.png" />
+
+                <!-- Header -->
+                <StackPanel Spacing="4" HorizontalAlignment="Center">
+                    <TextBlock
+                        Text="Create your account"
+                        FontSize="24"
+                        FontWeight="SemiBold"
+                        TextAlignment="Center" />
+                    <TextBlock TextAlignment="Center" Opacity="0.75">
+                        <Run Text="Already have an account? " />
+                        <Hyperlink Click="LoginLinkClick">
+                            <Run Text="Log in" />
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+
+                <!-- Fields -->
+                <TextBox
+                    x:Name="UsernameBox"
+                    Header="Username"
+                    PlaceholderText="Choose a username"
+                    Margin="0,10,0,0" />
+
+                <TextBox
+                    x:Name="EmailBox"
+                    Header="Email"
+                    PlaceholderText="you@example.com"
+                    Text="" />
+
+                <PasswordBox
+                    x:Name="PasswordBox"
+                    Header="Password"
+                    PlaceholderText="Create a password" />
+
+                <PasswordBox
+                    x:Name="ConfirmPasswordBox"
+                    Header="Confirm Password"
+                    PlaceholderText="Re-enter your password" />
+
+                <!-- Button -->
+                <Button
+                    Content="Register"
+                    CornerRadius="10"
+                    Height="40"
+                    Margin="0,8,0,0"
+                    Style="{ThemeResource AccentButtonStyle}"
+                    Click="RegisterClick" />
+
+                <!-- Small helper text -->
+                <TextBlock
+                    x:Name="StatusText"
+                    Text=""
+                    Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                    TextAlignment="Center"
+                    Visibility="Collapsed"
+                    Margin="0,4,0,0" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

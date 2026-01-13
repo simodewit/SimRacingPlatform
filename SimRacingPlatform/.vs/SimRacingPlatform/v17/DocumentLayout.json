@@ -3,28 +3,12 @@
   "WorkspaceRootPath": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|c:\\github desktop\\simracingplatform\\simracingplatform\\windows\\updater.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|solutionrelative:windows\\updater.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|c:\\github desktop\\simracingplatform\\simracingplatform\\pages\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|solutionrelative:pages\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|c:\\github desktop\\simracingplatform\\simracingplatform\\windows\\updater.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|solutionrelative:windows\\updater.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|c:\\github desktop\\simracingplatform\\simracingplatform\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|c:\\github desktop\\simracingplatform\\simracingplatform\\simracingplatform.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|solutionrelative:simracingplatform.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|c:\\github desktop\\simracingplatform\\simracingplatform\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|c:\\github desktop\\simracingplatform\\simracingplatform\\utilities\\updateutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|solutionrelative:utilities\\updateutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|c:\\github desktop\\simracingplatform\\simracingplatform\\pages\\registerpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EDDB15B1-C230-41BB-8836-2D18161CE21F}|SimRacingPlatform.csproj|solutionrelative:pages\\registerpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,84 +18,32 @@
       "DocumentGroups": [
         {
           "DockedHeight": 256,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SimRacingPlatform",
-              "DocumentMoniker": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\SimRacingPlatform.csproj",
-              "RelativeDocumentMoniker": "SimRacingPlatform.csproj",
-              "ToolTip": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\SimRacingPlatform.csproj",
-              "RelativeToolTip": "SimRacingPlatform.csproj",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAAAIEAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-01-13T10:27:05.77Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T10:27:26.153Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UpdateUtility.cs",
-              "DocumentMoniker": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\Utilities\\UpdateUtility.cs",
-              "RelativeDocumentMoniker": "Utilities\\UpdateUtility.cs",
-              "ToolTip": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\Utilities\\UpdateUtility.cs",
-              "RelativeToolTip": "Utilities\\UpdateUtility.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAUwDsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T10:23:07.131Z",
+              "DocumentIndex": 0,
+              "Title": "LoginPage.xaml",
+              "DocumentMoniker": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\Pages\\LoginPage.xaml",
+              "RelativeDocumentMoniker": "Pages\\LoginPage.xaml",
+              "ToolTip": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\Pages\\LoginPage.xaml",
+              "RelativeToolTip": "Pages\\LoginPage.xaml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAEYAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-13T13:53:43.819Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Updater.xaml",
-              "DocumentMoniker": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\Windows\\Updater.xaml",
-              "RelativeDocumentMoniker": "Windows\\Updater.xaml",
-              "ToolTip": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\Windows\\Updater.xaml",
-              "RelativeToolTip": "Windows\\Updater.xaml",
-              "ViewState": "AgIAABsAAAAAAAAAAAAcwDsAAAAkAAAAAAAAAA==",
+              "Title": "RegisterPage.xaml",
+              "DocumentMoniker": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\Pages\\RegisterPage.xaml",
+              "RelativeDocumentMoniker": "Pages\\RegisterPage.xaml",
+              "ToolTip": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\Pages\\RegisterPage.xaml",
+              "RelativeToolTip": "Pages\\RegisterPage.xaml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAE0AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-13T10:20:35.252Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Updater.xaml.cs",
-              "DocumentMoniker": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\Windows\\Updater.xaml.cs",
-              "RelativeDocumentMoniker": "Windows\\Updater.xaml.cs",
-              "ToolTip": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\Windows\\Updater.xaml.cs",
-              "RelativeToolTip": "Windows\\Updater.xaml.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAgwC0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T10:16:03.417Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\App.xaml.cs",
-              "RelativeDocumentMoniker": "App.xaml.cs",
-              "ToolTip": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\App.xaml.cs",
-              "RelativeToolTip": "App.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T09:51:21.292Z",
+              "WhenOpened": "2026-01-13T13:53:30.058Z",
               "EditorCaption": ""
             }
           ]

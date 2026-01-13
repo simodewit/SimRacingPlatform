@@ -226,47 +226,57 @@ namespace SimRacingPlatform.SimRacingPlatform_XamlTypeInfo
         
         private void InitTypeTables()
         {
-            _typeNameTable = new string[19];
+            _typeNameTable = new string[24];
             _typeNameTable[0] = "Microsoft.UI.Xaml.Controls.XamlControlsResources";
             _typeNameTable[1] = "Microsoft.UI.Xaml.ResourceDictionary";
             _typeNameTable[2] = "Object";
             _typeNameTable[3] = "Boolean";
-            _typeNameTable[4] = "Microsoft.UI.Xaml.Media.MicaBackdrop";
-            _typeNameTable[5] = "Microsoft.UI.Xaml.Media.SystemBackdrop";
-            _typeNameTable[6] = "Microsoft.UI.Composition.SystemBackdrops.MicaKind";
-            _typeNameTable[7] = "System.Enum";
-            _typeNameTable[8] = "System.ValueType";
-            _typeNameTable[9] = "SimRacingPlatform.Windows.MainWindow";
-            _typeNameTable[10] = "Microsoft.UI.Xaml.Window";
-            _typeNameTable[11] = "Microsoft.UI.Xaml.Controls.ProgressBar";
-            _typeNameTable[12] = "Microsoft.UI.Xaml.Controls.Primitives.RangeBase";
-            _typeNameTable[13] = "Microsoft.UI.Xaml.Controls.ProgressBarTemplateSettings";
-            _typeNameTable[14] = "Microsoft.UI.Xaml.DependencyObject";
-            _typeNameTable[15] = "SimRacingPlatform.Windows.Updater";
-            _typeNameTable[16] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
-            _typeNameTable[17] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
-            _typeNameTable[18] = "Int32";
+            _typeNameTable[4] = "SimRacingPlatform.Pages.LandingPage";
+            _typeNameTable[5] = "Microsoft.UI.Xaml.Controls.Page";
+            _typeNameTable[6] = "Microsoft.UI.Xaml.Controls.UserControl";
+            _typeNameTable[7] = "SimRacingPlatform.Pages.LoginPage";
+            _typeNameTable[8] = "SimRacingPlatform.Pages.RegisterPage";
+            _typeNameTable[9] = "Microsoft.UI.Xaml.Media.MicaBackdrop";
+            _typeNameTable[10] = "Microsoft.UI.Xaml.Media.SystemBackdrop";
+            _typeNameTable[11] = "Microsoft.UI.Composition.SystemBackdrops.MicaKind";
+            _typeNameTable[12] = "System.Enum";
+            _typeNameTable[13] = "System.ValueType";
+            _typeNameTable[14] = "SimRacingPlatform.Windows.MainWindow";
+            _typeNameTable[15] = "Microsoft.UI.Xaml.Window";
+            _typeNameTable[16] = "Microsoft.UI.Xaml.Controls.ProgressBar";
+            _typeNameTable[17] = "Microsoft.UI.Xaml.Controls.Primitives.RangeBase";
+            _typeNameTable[18] = "Microsoft.UI.Xaml.Controls.ProgressBarTemplateSettings";
+            _typeNameTable[19] = "Microsoft.UI.Xaml.DependencyObject";
+            _typeNameTable[20] = "SimRacingPlatform.Windows.Updater";
+            _typeNameTable[21] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
+            _typeNameTable[22] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
+            _typeNameTable[23] = "Int32";
 
-            _typeTable = new global::System.Type[19];
+            _typeTable = new global::System.Type[24];
             _typeTable[0] = typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources);
             _typeTable[1] = typeof(global::Microsoft.UI.Xaml.ResourceDictionary);
             _typeTable[2] = typeof(global::System.Object);
             _typeTable[3] = typeof(global::System.Boolean);
-            _typeTable[4] = typeof(global::Microsoft.UI.Xaml.Media.MicaBackdrop);
-            _typeTable[5] = typeof(global::Microsoft.UI.Xaml.Media.SystemBackdrop);
-            _typeTable[6] = typeof(global::Microsoft.UI.Composition.SystemBackdrops.MicaKind);
-            _typeTable[7] = typeof(global::System.Enum);
-            _typeTable[8] = typeof(global::System.ValueType);
-            _typeTable[9] = typeof(global::SimRacingPlatform.Windows.MainWindow);
-            _typeTable[10] = typeof(global::Microsoft.UI.Xaml.Window);
-            _typeTable[11] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressBar);
-            _typeTable[12] = typeof(global::Microsoft.UI.Xaml.Controls.Primitives.RangeBase);
-            _typeTable[13] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressBarTemplateSettings);
-            _typeTable[14] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
-            _typeTable[15] = typeof(global::SimRacingPlatform.Windows.Updater);
-            _typeTable[16] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
-            _typeTable[17] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
-            _typeTable[18] = typeof(global::System.Int32);
+            _typeTable[4] = typeof(global::SimRacingPlatform.Pages.LandingPage);
+            _typeTable[5] = typeof(global::Microsoft.UI.Xaml.Controls.Page);
+            _typeTable[6] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
+            _typeTable[7] = typeof(global::SimRacingPlatform.Pages.LoginPage);
+            _typeTable[8] = typeof(global::SimRacingPlatform.Pages.RegisterPage);
+            _typeTable[9] = typeof(global::Microsoft.UI.Xaml.Media.MicaBackdrop);
+            _typeTable[10] = typeof(global::Microsoft.UI.Xaml.Media.SystemBackdrop);
+            _typeTable[11] = typeof(global::Microsoft.UI.Composition.SystemBackdrops.MicaKind);
+            _typeTable[12] = typeof(global::System.Enum);
+            _typeTable[13] = typeof(global::System.ValueType);
+            _typeTable[14] = typeof(global::SimRacingPlatform.Windows.MainWindow);
+            _typeTable[15] = typeof(global::Microsoft.UI.Xaml.Window);
+            _typeTable[16] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressBar);
+            _typeTable[17] = typeof(global::Microsoft.UI.Xaml.Controls.Primitives.RangeBase);
+            _typeTable[18] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressBarTemplateSettings);
+            _typeTable[19] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
+            _typeTable[20] = typeof(global::SimRacingPlatform.Windows.Updater);
+            _typeTable[21] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
+            _typeTable[22] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
+            _typeTable[23] = typeof(global::System.Int32);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -302,22 +312,28 @@ namespace SimRacingPlatform.SimRacingPlatform_XamlTypeInfo
         }
 
         private object Activate_0_XamlControlsResources() { return new global::Microsoft.UI.Xaml.Controls.XamlControlsResources(); }
-        private object Activate_4_MicaBackdrop() { return new global::Microsoft.UI.Xaml.Media.MicaBackdrop(); }
-        private object Activate_9_MainWindow() { return new global::SimRacingPlatform.Windows.MainWindow(); }
-        private object Activate_11_ProgressBar() { return new global::Microsoft.UI.Xaml.Controls.ProgressBar(); }
-        private object Activate_15_Updater() { return new global::SimRacingPlatform.Windows.Updater(); }
-        private object Activate_16_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
+        private object Activate_4_LandingPage() { return new global::SimRacingPlatform.Pages.LandingPage(); }
+        private object Activate_7_LoginPage() { return new global::SimRacingPlatform.Pages.LoginPage(); }
+        private object Activate_8_RegisterPage() { return new global::SimRacingPlatform.Pages.RegisterPage(); }
+        private object Activate_9_MicaBackdrop() { return new global::Microsoft.UI.Xaml.Media.MicaBackdrop(); }
+        private object Activate_14_MainWindow() { return new global::SimRacingPlatform.Windows.MainWindow(); }
+        private object Activate_16_ProgressBar() { return new global::Microsoft.UI.Xaml.Controls.ProgressBar(); }
+        private object Activate_20_Updater() { return new global::SimRacingPlatform.Windows.Updater(); }
+        private object Activate_21_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
         private void StaticInitializer_0_XamlControlsResources() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources).TypeHandle);
-        private void StaticInitializer_4_MicaBackdrop() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Media.MicaBackdrop).TypeHandle);
-        private void StaticInitializer_6_MicaKind() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Composition.SystemBackdrops.MicaKind).TypeHandle);
-        private void StaticInitializer_7_Enum() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Enum).TypeHandle);
-        private void StaticInitializer_8_ValueType() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.ValueType).TypeHandle);
-        private void StaticInitializer_9_MainWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::SimRacingPlatform.Windows.MainWindow).TypeHandle);
-        private void StaticInitializer_11_ProgressBar() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ProgressBar).TypeHandle);
-        private void StaticInitializer_13_ProgressBarTemplateSettings() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ProgressBarTemplateSettings).TypeHandle);
-        private void StaticInitializer_15_Updater() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::SimRacingPlatform.Windows.Updater).TypeHandle);
-        private void StaticInitializer_16_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
-        private void StaticInitializer_17_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
+        private void StaticInitializer_4_LandingPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::SimRacingPlatform.Pages.LandingPage).TypeHandle);
+        private void StaticInitializer_7_LoginPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::SimRacingPlatform.Pages.LoginPage).TypeHandle);
+        private void StaticInitializer_8_RegisterPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::SimRacingPlatform.Pages.RegisterPage).TypeHandle);
+        private void StaticInitializer_9_MicaBackdrop() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Media.MicaBackdrop).TypeHandle);
+        private void StaticInitializer_11_MicaKind() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Composition.SystemBackdrops.MicaKind).TypeHandle);
+        private void StaticInitializer_12_Enum() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Enum).TypeHandle);
+        private void StaticInitializer_13_ValueType() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.ValueType).TypeHandle);
+        private void StaticInitializer_14_MainWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::SimRacingPlatform.Windows.MainWindow).TypeHandle);
+        private void StaticInitializer_16_ProgressBar() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ProgressBar).TypeHandle);
+        private void StaticInitializer_18_ProgressBarTemplateSettings() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ProgressBarTemplateSettings).TypeHandle);
+        private void StaticInitializer_20_Updater() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::SimRacingPlatform.Windows.Updater).TypeHandle);
+        private void StaticInitializer_21_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
+        private void StaticInitializer_22_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -325,7 +341,7 @@ namespace SimRacingPlatform.SimRacingPlatform_XamlTypeInfo
             var newItem = (global::System.Object)item;
             collection.Add(newKey, newItem);
         }
-        private void VectorAdd_17_IList(object instance, object item)
+        private void VectorAdd_22_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.TreeViewNode>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)item;
@@ -363,54 +379,86 @@ namespace SimRacingPlatform.SimRacingPlatform_XamlTypeInfo
                 xamlType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 4:   //  Microsoft.UI.Xaml.Media.MicaBackdrop
+            case 4:   //  SimRacingPlatform.Pages.LandingPage
+                userType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_4_LandingPage;
+                userType.StaticInitializer = StaticInitializer_4_LandingPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 5:   //  Microsoft.UI.Xaml.Controls.Page
+                xamlType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 6:   //  Microsoft.UI.Xaml.Controls.UserControl
+                xamlType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 7:   //  SimRacingPlatform.Pages.LoginPage
+                userType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_7_LoginPage;
+                userType.StaticInitializer = StaticInitializer_7_LoginPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 8:   //  SimRacingPlatform.Pages.RegisterPage
+                userType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_8_RegisterPage;
+                userType.StaticInitializer = StaticInitializer_8_RegisterPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 9:   //  Microsoft.UI.Xaml.Media.MicaBackdrop
                 userType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Media.SystemBackdrop"));
-                userType.Activator = Activate_4_MicaBackdrop;
-                userType.StaticInitializer = StaticInitializer_4_MicaBackdrop;
+                userType.Activator = Activate_9_MicaBackdrop;
+                userType.StaticInitializer = StaticInitializer_9_MicaBackdrop;
                 userType.AddMemberName("Kind");
                 xamlType = userType;
                 break;
 
-            case 5:   //  Microsoft.UI.Xaml.Media.SystemBackdrop
+            case 10:   //  Microsoft.UI.Xaml.Media.SystemBackdrop
                 xamlType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 6:   //  Microsoft.UI.Composition.SystemBackdrops.MicaKind
+            case 11:   //  Microsoft.UI.Composition.SystemBackdrops.MicaKind
                 userType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_6_MicaKind;
+                userType.StaticInitializer = StaticInitializer_11_MicaKind;
                 userType.AddEnumValue("Base", global::Microsoft.UI.Composition.SystemBackdrops.MicaKind.Base);
                 userType.AddEnumValue("BaseAlt", global::Microsoft.UI.Composition.SystemBackdrops.MicaKind.BaseAlt);
                 xamlType = userType;
                 break;
 
-            case 7:   //  System.Enum
+            case 12:   //  System.Enum
                 userType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
-                userType.StaticInitializer = StaticInitializer_7_Enum;
+                userType.StaticInitializer = StaticInitializer_12_Enum;
                 xamlType = userType;
                 break;
 
-            case 8:   //  System.ValueType
+            case 13:   //  System.ValueType
                 userType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_8_ValueType;
+                userType.StaticInitializer = StaticInitializer_13_ValueType;
                 xamlType = userType;
                 break;
 
-            case 9:   //  SimRacingPlatform.Windows.MainWindow
+            case 14:   //  SimRacingPlatform.Windows.MainWindow
                 userType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
-                userType.Activator = Activate_9_MainWindow;
-                userType.StaticInitializer = StaticInitializer_9_MainWindow;
+                userType.Activator = Activate_14_MainWindow;
+                userType.StaticInitializer = StaticInitializer_14_MainWindow;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 10:   //  Microsoft.UI.Xaml.Window
+            case 15:   //  Microsoft.UI.Xaml.Window
                 xamlType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 11:   //  Microsoft.UI.Xaml.Controls.ProgressBar
+            case 16:   //  Microsoft.UI.Xaml.Controls.ProgressBar
                 userType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Primitives.RangeBase"));
-                userType.Activator = Activate_11_ProgressBar;
-                userType.StaticInitializer = StaticInitializer_11_ProgressBar;
+                userType.Activator = Activate_16_ProgressBar;
+                userType.StaticInitializer = StaticInitializer_16_ProgressBar;
                 userType.AddMemberName("IsIndeterminate");
                 userType.AddMemberName("ShowError");
                 userType.AddMemberName("ShowPaused");
@@ -418,33 +466,33 @@ namespace SimRacingPlatform.SimRacingPlatform_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 12:   //  Microsoft.UI.Xaml.Controls.Primitives.RangeBase
+            case 17:   //  Microsoft.UI.Xaml.Controls.Primitives.RangeBase
                 xamlType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 13:   //  Microsoft.UI.Xaml.Controls.ProgressBarTemplateSettings
+            case 18:   //  Microsoft.UI.Xaml.Controls.ProgressBarTemplateSettings
                 userType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.StaticInitializer = StaticInitializer_13_ProgressBarTemplateSettings;
+                userType.StaticInitializer = StaticInitializer_18_ProgressBarTemplateSettings;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 14:   //  Microsoft.UI.Xaml.DependencyObject
+            case 19:   //  Microsoft.UI.Xaml.DependencyObject
                 xamlType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 15:   //  SimRacingPlatform.Windows.Updater
+            case 20:   //  SimRacingPlatform.Windows.Updater
                 userType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
-                userType.Activator = Activate_15_Updater;
-                userType.StaticInitializer = StaticInitializer_15_Updater;
+                userType.Activator = Activate_20_Updater;
+                userType.StaticInitializer = StaticInitializer_20_Updater;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 16:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
+            case 21:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
                 userType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_16_TreeViewNode;
-                userType.StaticInitializer = StaticInitializer_16_TreeViewNode;
+                userType.Activator = Activate_21_TreeViewNode;
+                userType.StaticInitializer = StaticInitializer_21_TreeViewNode;
                 userType.AddMemberName("Children");
                 userType.AddMemberName("Content");
                 userType.AddMemberName("Depth");
@@ -456,15 +504,15 @@ namespace SimRacingPlatform.SimRacingPlatform_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 17:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
+            case 22:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
                 userType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_17_IList;
-                userType.CollectionAdd = VectorAdd_17_IList;
+                userType.StaticInitializer = StaticInitializer_22_IList;
+                userType.CollectionAdd = VectorAdd_22_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 18:   //  Int32
+            case 23:   //  Int32
                 xamlType = new global::SimRacingPlatform.SimRacingPlatform_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }

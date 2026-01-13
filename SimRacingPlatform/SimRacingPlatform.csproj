@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
@@ -12,7 +12,10 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  <ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="System.Text.Json" Version="8.0.5" PrivateAssets="all" />
+	</ItemGroup>
+	<ItemGroup>
     <Content Remove="Assets\Icons\AppIcon\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
     <Content Remove="Assets\Icons\AppIcon\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
     <Content Remove="Assets\Icons\AppIcon\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
@@ -81,6 +84,9 @@
     <None Remove="Assets\Icons\WideTile\Wide310x150Logo.scale-200.png" />
     <None Remove="Assets\Icons\WideTile\Wide310x150Logo.scale-400.png" />
     <None Remove="Assets\SquareLogo.png" />
+    <None Remove="Pages\LandingPage.xaml" />
+    <None Remove="Pages\LoginPage.xaml" />
+    <None Remove="Pages\RegisterPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -96,12 +102,28 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7463" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
     <PackageReference Include="Velopack" Version="0.0.1298" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Pages\LandingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\RegisterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Windows\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\LoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

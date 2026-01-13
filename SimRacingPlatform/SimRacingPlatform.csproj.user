@@ -18,6 +18,15 @@
     <None Update="Package.appxmanifest">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="Pages\LandingPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\RegisterPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Windows\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
