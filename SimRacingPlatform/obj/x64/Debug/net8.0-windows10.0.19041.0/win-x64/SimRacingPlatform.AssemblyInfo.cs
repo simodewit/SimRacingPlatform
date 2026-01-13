@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SimRacingPlatform")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b8dea628d1891a3765cb30845508e6bf2a3c8c2f")]
 [assembly: System.Reflection.AssemblyProductAttribute("SimRacingPlatform")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SimRacingPlatform")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
