@@ -676,8 +676,14 @@
     <AppxPackagedFile Include="C:\Users\KMarSGDesktop02\.nuget\packages\microsoft.windowsappsdk.winui\1.8.251105000\lib\net6.0-windows10.0.17763.0\Microsoft.WinUI.dll">
       <PackagePath>Microsoft.WinUI.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KMarSGDesktop02\.nuget\packages\nuget.versioning\6.14.0\lib\netstandard2.0\NuGet.Versioning.dll">
+      <PackagePath>NuGet.Versioning.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KMarSGDesktop02\.nuget\packages\system.numerics.tensors\9.0.0\lib\net8.0\System.Numerics.Tensors.dll">
       <PackagePath>System.Numerics.Tensors.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\KMarSGDesktop02\.nuget\packages\velopack\0.0.1298\lib\net8.0\Velopack.dll">
+      <PackagePath>Velopack.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\KMarSGDesktop02\.nuget\packages\microsoft.web.webview2\1.0.3179.45\runtimes\win-x64\native\WebView2Loader.dll">
       <PackagePath>WebView2Loader.dll</PackagePath>

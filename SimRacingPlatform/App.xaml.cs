@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using SimRacingPlatform.Windows;
+using Velopack;
 
 namespace SimRacingPlatform
 {

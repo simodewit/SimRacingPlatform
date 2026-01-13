@@ -1,3 +1,4 @@
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using SimRacingPlatform.Utilities;
 using System.Threading.Tasks;
@@ -6,8 +7,10 @@ namespace SimRacingPlatform.Windows
 {
     public sealed partial class Updater : Window
     {
-        private int _windowHeight = 600;
-        private int _windowWidth = 600;
+        private const int WindowHeight = 600;
+        private const int WindowWidth = 600;
+
+        private bool _started;
 
         public Updater()
         {
@@ -15,22 +18,46 @@ namespace SimRacingPlatform.Windows
 
             WindowUtility.HideTitleBar(this);
             WindowUtility.DisableResizing(this);
-            WindowUtility.SetSize(this, _windowWidth, _windowHeight);
+            WindowUtility.SetSize(this, WindowWidth, WindowHeight);
 
-            ShouldCheckForUpdateHere();
+            Activated += Updater_Activated;
         }
 
-        private async void ShouldCheckForUpdateHere()
+        private async void Updater_Activated(object sender, WindowActivatedEventArgs args)
         {
-            await Task.Delay(5000);
-            Updated();
+            // Prevent running twice (Activated can fire more than once)
+            if (_started)
+            {
+                return;
+            }
+            _started = true;
+
+            await RunUpdateThenContinueAsync();
         }
 
-        private void Updated()
+        private async Task RunUpdateThenContinueAsync()
+        {
+            UpdateResult result = await UpdateUtility.RunUpdateFlowAsync(
+                onProgress: progress =>
+                {
+                    UpdateProgressBar.Value = progress;
+                    ProgressText.Text = "Downloading update";
+                    PercentText.Text = $"{progress}%";
+                });
+
+            if (result == UpdateResult.Restarting)
+            {
+                return;
+            }
+
+            OpenMainWindowAndClose();
+        }
+
+        private void OpenMainWindowAndClose()
         {
             DispatcherQueue.TryEnqueue(() =>
             {
-                var nextWindow = new MainWindow();
+                MainWindow nextWindow = new MainWindow();
                 App.window = nextWindow;
                 nextWindow.Activate();
 

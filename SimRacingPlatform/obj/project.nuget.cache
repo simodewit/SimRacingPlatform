@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cyjO6OrJ2Ms=",
+  "dgSpecHash": "n6yZPUG22uY=",
   "success": true,
   "projectFilePath": "C:\\Github Desktop\\SimRacingPlatform\\SimRacingPlatform\\SimRacingPlatform.csproj",
   "expectedPackageFiles": [
@@ -17,7 +17,9 @@
     "C:\\Users\\KMarSGDesktop02\\.nuget\\packages\\microsoft.windowsappsdk.runtime\\1.8.251106002\\microsoft.windowsappsdk.runtime.1.8.251106002.nupkg.sha512",
     "C:\\Users\\KMarSGDesktop02\\.nuget\\packages\\microsoft.windowsappsdk.widgets\\1.8.250904007\\microsoft.windowsappsdk.widgets.1.8.250904007.nupkg.sha512",
     "C:\\Users\\KMarSGDesktop02\\.nuget\\packages\\microsoft.windowsappsdk.winui\\1.8.251105000\\microsoft.windowsappsdk.winui.1.8.251105000.nupkg.sha512",
+    "C:\\Users\\KMarSGDesktop02\\.nuget\\packages\\nuget.versioning\\6.14.0\\nuget.versioning.6.14.0.nupkg.sha512",
     "C:\\Users\\KMarSGDesktop02\\.nuget\\packages\\system.numerics.tensors\\9.0.0\\system.numerics.tensors.9.0.0.nupkg.sha512",
+    "C:\\Users\\KMarSGDesktop02\\.nuget\\packages\\velopack\\0.0.1298\\velopack.0.0.1298.nupkg.sha512",
     "C:\\Users\\KMarSGDesktop02\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\8.0.19\\microsoft.netcore.app.runtime.win-x86.8.0.19.nupkg.sha512",
     "C:\\Users\\KMarSGDesktop02\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.56\\microsoft.windows.sdk.net.ref.10.0.19041.56.nupkg.sha512",
     "C:\\Users\\KMarSGDesktop02\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\8.0.19\\microsoft.aspnetcore.app.runtime.win-x86.8.0.19.nupkg.sha512",

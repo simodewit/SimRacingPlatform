@@ -11,6 +11,7 @@
         "dependencies": {
           "Microsoft.Windows.SDK.BuildTools": "10.0.26100.7463",
           "Microsoft.WindowsAppSDK": "1.8.251106002",
+          "Velopack": "0.0.1298",
           "Microsoft.Web.WebView2.Core.Projection": "1.0.3179.45",
           "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "8.0.19",
           "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.19041.56"
@@ -966,11 +967,30 @@
           }
         }
       },
+      "NuGet.Versioning/6.14.0": {
+        "runtime": {
+          "lib/netstandard2.0/NuGet.Versioning.dll": {
+            "assemblyVersion": "6.14.0.116",
+            "fileVersion": "6.14.0.116"
+          }
+        }
+      },
       "System.Numerics.Tensors/9.0.0": {
         "runtime": {
           "lib/net8.0/System.Numerics.Tensors.dll": {
             "assemblyVersion": "9.0.0.0",
             "fileVersion": "9.0.24.52809"
+          }
+        }
+      },
+      "Velopack/0.0.1298": {
+        "dependencies": {
+          "NuGet.Versioning": "6.14.0"
+        },
+        "runtime": {
+          "lib/net8.0/Velopack.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.1298.60806"
           }
         }
       },
@@ -1091,12 +1111,26 @@
       "path": "microsoft.windowsappsdk.winui/1.8.251105000",
       "hashPath": "microsoft.windowsappsdk.winui.1.8.251105000.nupkg.sha512"
     },
+    "NuGet.Versioning/6.14.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4v4blkhCv8mpKtfx+z0G/X0daVCzdIaHSC51GkUspugi5JIMn2Bo8xm5PdZYF0U68gOBfz/+aPWMnpRd85Jbow==",
+      "path": "nuget.versioning/6.14.0",
+      "hashPath": "nuget.versioning.6.14.0.nupkg.sha512"
+    },
     "System.Numerics.Tensors/9.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-hyJB4UlpAi19Xr9AXzu2NuagKC4lPfHObNMEAA0HmqFz2rX7wKgzeYzO/jM/eBHDhnUGFFEjk5cOoJaxqg5J4A==",
       "path": "system.numerics.tensors/9.0.0",
       "hashPath": "system.numerics.tensors.9.0.0.nupkg.sha512"
+    },
+    "Velopack/0.0.1298": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PJ6Nm28qJ4ChsHYzgHUJ8g+DGyyHes2+bwxY709+znMhgi8fMp8M1FTF8x6pZMjnsPCWVwoMlxVEyq0NLeRZtA==",
+      "path": "velopack/0.0.1298",
+      "hashPath": "velopack.0.0.1298.nupkg.sha512"
     },
     "Microsoft.Web.WebView2.Core.Projection/1.0.3179.45": {
       "type": "reference",
