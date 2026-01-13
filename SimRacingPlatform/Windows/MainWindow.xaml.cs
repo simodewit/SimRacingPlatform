@@ -12,7 +12,17 @@ namespace SimRacingPlatform.Windows
         {
             instance = this;
             InitializeComponent();
-            NavigateTo(typeof(LoginPage));
+
+            var user = App.AuthService.Client.User;
+
+            if (user != null)
+            {
+                NavigateTo(typeof(LandingPage));
+            }
+            else
+            {
+                NavigateTo(typeof(LoginPage));
+            }
         }
 
         public void NavigateTo(Type pageType)

@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
+using System;
 using Velopack;
 
 namespace SimRacingPlatform
