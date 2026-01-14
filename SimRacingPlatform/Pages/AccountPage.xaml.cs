@@ -1,9 +1,13 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Navigation;
 using SimRacingPlatform.Utilities;
 using SimRacingPlatform.Windows;
 using System;
+using Firebase.Auth;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace SimRacingPlatform.Pages
 {
@@ -16,9 +20,25 @@ namespace SimRacingPlatform.Pages
             InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs args)
+        {
+            base.OnNavigatedTo(args);
+
+            var user = FirebaseUtility.Instance.CurrentUser;
+            if (user is null)
+            {
+                MainWindow.Instance.NavigateTo(typeof(LoginPage));
+                return;
+            }
+
+            ViewModel.Email = user.Info.Email;
+            ViewModel.DisplayName = user.Info.DisplayName;
+            ViewModel.Uid = user.Uid;
+        }
+
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.instance.NavigateBack();
+            MainWindow.Instance.NavigateBack();
         }
 
         private void ChangePassword_Click(object sender, RoutedEventArgs e)
@@ -28,8 +48,8 @@ namespace SimRacingPlatform.Pages
 
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
-            FirebaseUtility.instance.Logout();
-            MainWindow.instance.NavigateTo(typeof(LoginPage));
+            FirebaseUtility.Instance.Logout();
+            MainWindow.Instance.NavigateTo(typeof(LoginPage));
         }
 
         private void ChangePhoto_Click(object sender, RoutedEventArgs e)
@@ -58,46 +78,50 @@ namespace SimRacingPlatform.Pages
         }
     }
 
-    public class AccountViewModel : DependencyObject
+    public class AccountViewModel : INotifyPropertyChanged
     {
-        public BitmapImage ProfileImage { get; } =
-            new BitmapImage(new Uri("ms-appx:///Assets/DefaultProfile.png"));
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        public string DisplayName { get; set; } = "Jane Doe";
-        public string Email { get; set; } = "jane.doe@example.com";
-        public string Username { get; set; } = "@janedoe";
-        public string AccountStatus { get; set; } = "Active";
+        private void Raise([CallerMemberName] string? name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+            
+        public BitmapImage ProfileImage { get; } = new BitmapImage(new Uri("ms-appx:///Assets/DefaultProfile.png"));
 
+        private string _displayName = "";
+        public string DisplayName
+        {
+            get => _displayName;
+            set { _displayName = value; Raise(); }
+        }
+
+        private string _email = "";
+        public string Email
+        {
+            get => _email;
+            set { _email = value; Raise(); }
+        }
+
+        private string _uid = "";
+        public string Uid
+        {
+            get => _uid;
+            set { _uid = value; Raise(); }
+        }
+
+        private bool _isTwoFactorEnabled;
         public bool IsTwoFactorEnabled
         {
-            get => (bool)GetValue(IsTwoFactorEnabledProperty);
-            set => SetValue(IsTwoFactorEnabledProperty, value);
+            get => _isTwoFactorEnabled;
+            set { _isTwoFactorEnabled = value; Raise(); }
         }
-        public static readonly DependencyProperty IsTwoFactorEnabledProperty =
-            DependencyProperty.Register(nameof(IsTwoFactorEnabled), typeof(bool), typeof(AccountViewModel), new PropertyMetadata(false));
 
+        private bool _signInAlertsEnabled = true;
         public bool SignInAlertsEnabled
         {
-            get => (bool)GetValue(SignInAlertsEnabledProperty);
-            set => SetValue(SignInAlertsEnabledProperty, value);
+            get => _signInAlertsEnabled;
+            set { _signInAlertsEnabled = value; Raise(); }
         }
-        public static readonly DependencyProperty SignInAlertsEnabledProperty =
-            DependencyProperty.Register(nameof(SignInAlertsEnabled), typeof(bool), typeof(AccountViewModel), new PropertyMetadata(true));
-
-        public bool NewsletterEnabled
-        {
-            get => (bool)GetValue(NewsletterEnabledProperty);
-            set => SetValue(NewsletterEnabledProperty, value);
-        }
-        public static readonly DependencyProperty NewsletterEnabledProperty =
-            DependencyProperty.Register(nameof(NewsletterEnabled), typeof(bool), typeof(AccountViewModel), new PropertyMetadata(false));
-
-        public string SelectedTheme
-        {
-            get => (string)GetValue(SelectedThemeProperty);
-            set => SetValue(SelectedThemeProperty, value);
-        }
-        public static readonly DependencyProperty SelectedThemeProperty =
-            DependencyProperty.Register(nameof(SelectedTheme), typeof(string), typeof(AccountViewModel), new PropertyMetadata("System"));
     }
 }

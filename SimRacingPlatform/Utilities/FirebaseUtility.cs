@@ -7,23 +7,19 @@ namespace SimRacingPlatform.Utilities
 {
     public sealed class FirebaseUtility
     {
-        public static FirebaseUtility instance;
-
+        public static FirebaseUtility Instance;
         public FirebaseAuthClient Client { get; }
+        public User? CurrentUser => Client.User;
 
         public FirebaseUtility(string apiKey, string authDomain)
         {
-            instance = this;
+            Instance = this;
 
             var config = new FirebaseAuthConfig
             {
                 ApiKey = apiKey,
                 AuthDomain = authDomain,
-                Providers = new FirebaseAuthProvider[]
-                {
-                new EmailProvider()
-                },
-
+                Providers = [new EmailProvider()],
                 UserRepository = new FileUserRepository("YourAppName")
             };
 

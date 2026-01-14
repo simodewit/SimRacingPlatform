@@ -7,7 +7,7 @@ namespace SimRacingPlatform.Windows
 {
     public sealed partial class MainWindow : Window
     {
-        public static MainWindow instance;
+        public static MainWindow Instance;
 
         private static readonly Type[] AuthPages =
 {
@@ -19,7 +19,7 @@ namespace SimRacingPlatform.Windows
 
         public MainWindow()
         {
-            instance = this;
+            Instance = this;
             InitializeComponent();
 
             ContentFrame.Navigated += ContentFrame_Navigated;

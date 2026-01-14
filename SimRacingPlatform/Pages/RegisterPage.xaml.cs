@@ -48,7 +48,7 @@ namespace SimRacingPlatform.Pages
 
                 var cred = await App.AuthService.RegisterAsync(email, password, displayName);
 
-                MainWindow.instance.NavigateTo(typeof(LandingPage));
+                MainWindow.Instance.NavigateTo(typeof(LandingPage));
             }
             catch (FirebaseAuthException ex)
             {
@@ -58,7 +58,7 @@ namespace SimRacingPlatform.Pages
 
         private void LoginLinkClick(object sender, RoutedEventArgs args)
         {
-            MainWindow.instance.NavigateTo(typeof(LoginPage));
+            MainWindow.Instance.NavigateTo(typeof(LoginPage));
         }
     }
 }

@@ -45,7 +45,7 @@ namespace SimRacingPlatform.Pages
 
         private void Dashboard_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.instance.NavigateTo(typeof(LandingPage));
+            MainWindow.Instance.NavigateTo(typeof(LandingPage));
         }
 
         private void Projects_Click(object sender, RoutedEventArgs e)
@@ -60,7 +60,7 @@ namespace SimRacingPlatform.Pages
 
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.instance.NavigateTo(typeof(AccountPage));
+            MainWindow.Instance.NavigateTo(typeof(AccountPage));
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)

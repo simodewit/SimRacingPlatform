@@ -33,7 +33,7 @@ namespace SimRacingPlatform.Pages
                 var cred = await App.AuthService.LoginAsync(email, password);
                 var idToken = await cred.User.GetIdTokenAsync();
 
-                MainWindow.instance.NavigateTo(typeof(LandingPage));
+                MainWindow.Instance.NavigateTo(typeof(LandingPage));
             }
             catch(FirebaseAuthException ex)
             {
@@ -43,7 +43,7 @@ namespace SimRacingPlatform.Pages
 
         private void RegisterLinkClick(object sender, RoutedEventArgs args)
         {
-            MainWindow.instance.NavigateTo(typeof(RegisterPage));
+            MainWindow.Instance.NavigateTo(typeof(RegisterPage));
         }
     }
 }
