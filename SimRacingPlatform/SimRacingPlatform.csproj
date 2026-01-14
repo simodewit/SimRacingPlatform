@@ -87,6 +87,7 @@
     <None Remove="Pages\LandingPage.xaml" />
     <None Remove="Pages\LoginPage.xaml" />
     <None Remove="Pages\RegisterPage.xaml" />
+    <None Remove="Pages\SideBar.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -106,6 +107,11 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7463" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
     <PackageReference Include="Velopack" Version="0.0.1298" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\SideBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\LandingPage.xaml">

@@ -27,7 +27,7 @@ namespace SimRacingPlatform.Windows
 
         public void NavigateTo(Type pageType)
         {
-            RootFrame.Navigate(pageType);
+            ContentFrame.Navigate(pageType);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Firebase.Auth;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SimRacingPlatform.Windows;
@@ -34,9 +35,9 @@ namespace SimRacingPlatform.Pages
 
                 MainWindow.instance.NavigateTo(typeof(LandingPage));
             }
-            catch
+            catch(FirebaseAuthException ex)
             {
-                Debug.WriteLine("failed");
+                Debug.WriteLine(ex);
             }
         }
 
