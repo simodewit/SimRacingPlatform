@@ -14,13 +14,13 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="260"/>
+            <ColumnDefinition x:Name="SidebarColumn" Width="260"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <views:Sidebar Grid.Column="0"/>
+        <views:Sidebar x:Name="SidebarControl" Grid.Column="0"/>
 
         <Frame x:Name="ContentFrame"
-               Grid.Column="1"/>
+           Grid.Column="1"/>
     </Grid>
 </Window>

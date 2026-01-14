@@ -1,4 +1,5 @@
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using SimRacingPlatform.Pages;
 using System;
 
@@ -8,10 +9,20 @@ namespace SimRacingPlatform.Windows
     {
         public static MainWindow instance;
 
+        private static readonly Type[] AuthPages =
+{
+            typeof(LoginPage),
+            typeof(RegisterPage),
+            // typeof(ForgotPasswordPage),
+            // typeof(VerifyEmailPage),
+        };
+
         public MainWindow()
         {
             instance = this;
             InitializeComponent();
+
+            ContentFrame.Navigated += ContentFrame_Navigated;
 
             var user = App.AuthService.Client.User;
 
@@ -28,6 +39,49 @@ namespace SimRacingPlatform.Windows
         public void NavigateTo(Type pageType)
         {
             ContentFrame.Navigate(pageType);
+        }
+
+        public void NavigateBack()
+        {
+            if (ContentFrame.CanGoBack)
+            {
+                ContentFrame.GoBack();
+            }
+        }
+
+        private void ContentFrame_Navigated(object sender, Microsoft.UI.Xaml.Navigation.NavigationEventArgs args)
+        {
+            bool isAuth = IsAuthPage(args.SourcePageType);
+            SetSidebarVisibility(!isAuth);
+        }
+
+        private static bool IsAuthPage(Type pageType)
+        {
+            foreach (var type in AuthPages)
+            {
+                if (type == pageType)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void SetSidebarVisibility(bool visible)
+        {
+            if (visible)
+            {
+                SidebarControl.Visibility = Visibility.Visible;
+                SidebarColumn.Width = new GridLength(260);
+                ContentFrame.SetValue(Grid.ColumnProperty, 1);
+            }
+            else
+            {
+                SidebarControl.Visibility = Visibility.Collapsed;
+                SidebarColumn.Width = new GridLength(0);
+                ContentFrame.SetValue(Grid.ColumnProperty, 1);
+            }
         }
     }
 }

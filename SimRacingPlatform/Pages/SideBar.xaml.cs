@@ -60,7 +60,7 @@ namespace SimRacingPlatform.Pages
 
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow.instance.NavigateTo(typeof(AccountPage));
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)

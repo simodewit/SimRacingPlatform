@@ -5,12 +5,16 @@ using System.Threading.Tasks;
 
 namespace SimRacingPlatform.Utilities
 {
-    public sealed class FirebaseAuthService
+    public sealed class FirebaseUtility
     {
+        public static FirebaseUtility instance;
+
         public FirebaseAuthClient Client { get; }
 
-        public FirebaseAuthService(string apiKey, string authDomain)
+        public FirebaseUtility(string apiKey, string authDomain)
         {
+            instance = this;
+
             var config = new FirebaseAuthConfig
             {
                 ApiKey = apiKey,
@@ -20,8 +24,6 @@ namespace SimRacingPlatform.Utilities
                 new EmailProvider()
                 },
 
-                // Persist the signed-in user between app launches
-                // (stores under %AppData%\YourAppName by default for this repo type)
                 UserRepository = new FileUserRepository("YourAppName")
             };
 
@@ -30,13 +32,11 @@ namespace SimRacingPlatform.Utilities
 
         public async Task<UserCredential> RegisterAsync(string email, string password, string displayName)
         {
-            // CreateUserWithEmailAndPasswordAsync(email, pwd, displayName) is provided by the library. :contentReference[oaicite:3]{index=3}
             return await Client.CreateUserWithEmailAndPasswordAsync(email, password, displayName);
         }
 
         public async Task<UserCredential> LoginAsync(string email, string password)
         {
-            // SignInWithEmailAndPasswordAsync(email, pwd) is provided by the library. :contentReference[oaicite:4]{index=4}
             return await Client.SignInWithEmailAndPasswordAsync(email, password);
         }
 

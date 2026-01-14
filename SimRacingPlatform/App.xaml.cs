@@ -7,7 +7,7 @@ namespace SimRacingPlatform
     public partial class App : Application
     {
         public static Window? window;
-        public static FirebaseAuthService AuthService { get; private set; } = null!;
+        public static FirebaseUtility AuthService { get; private set; } = null!;
 
         public App()
         {
@@ -24,7 +24,7 @@ namespace SimRacingPlatform
 
         private static void StartFirebaseService()
         {
-            AuthService = new FirebaseAuthService(
+            AuthService = new FirebaseUtility(
                 apiKey: "AIzaSyAQoyg7y5OmivRsyOyy2eT7qUfFT16VI_M",
                 authDomain: "simracingplatform-1370c.firebaseapp.com");
         }

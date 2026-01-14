@@ -13,7 +13,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="System.Text.Json" Version="8.0.5" PrivateAssets="all" />
+		<PackageReference Include="System.Text.Json" Version="8.0.5"/>
 	</ItemGroup>
 	<ItemGroup>
     <Content Remove="Assets\Icons\AppIcon\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
@@ -103,7 +103,8 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
+	<PackageReference Include="Microsoft.Windows.SDK.BuildTools.MSIX" Version="1.7.20250829.1" />
+	<PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7463" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
     <PackageReference Include="Velopack" Version="0.0.1298" />
