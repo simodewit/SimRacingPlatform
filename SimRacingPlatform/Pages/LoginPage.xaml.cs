@@ -15,7 +15,7 @@ namespace SimRacingPlatform.Pages
 
         private async void LoginClick(object sender, RoutedEventArgs args)
         {
-            if(string.IsNullOrEmpty(UsernameBox.Text))
+            if(string.IsNullOrEmpty(EmailBox.Text))
             {
                 return;
             }
@@ -27,7 +27,7 @@ namespace SimRacingPlatform.Pages
 
             try
             {
-                var email = UsernameBox.Text.Trim();
+                var email = EmailBox.Text.Trim();
                 var password = PasswordBox.Password;
 
                 var cred = await App.AuthService.LoginAsync(email, password);

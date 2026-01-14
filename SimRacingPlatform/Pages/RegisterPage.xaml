@@ -31,7 +31,7 @@
                     Height="72"
                     HorizontalAlignment="Center"
                     Stretch="Uniform"
-                    Source="ms-appx:///Assets/Logo.png" />
+                    Source="ms-appx:///Assets/SquareLogo.png" />
 
                 <!-- Header -->
                 <StackPanel Spacing="4" HorizontalAlignment="Center">

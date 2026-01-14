@@ -15,8 +15,6 @@ namespace SimRacingPlatform.Pages
         
         private async void RegisterClick(object sender, RoutedEventArgs args)
         {
-            Debug.WriteLine("triggers");
-
             if (string.IsNullOrEmpty(UsernameBox.Text))
             {
                 return;
@@ -37,11 +35,8 @@ namespace SimRacingPlatform.Pages
                 return;
             }
 
-            Debug.WriteLine("passes");
-
             try
             {
-                Debug.WriteLine("tries");
                 var email = EmailBox.Text.Trim();
                 var password = PasswordBox.Password;
                 var displayName = UsernameBox.Text.Trim();

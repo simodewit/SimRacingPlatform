@@ -47,7 +47,7 @@
         <!-- Content -->
         <ScrollViewer Grid.Row="1">
             <Grid Padding="12,8,12,24">
-                <Border MaxWidth="940"
+                <Border MinWidth="400"
                         HorizontalAlignment="Center"
                         CornerRadius="16"
                         Padding="18"
@@ -70,13 +70,10 @@
                                     </Ellipse.Fill>
                                 </Ellipse>
 
-                                <Button Width="28" Height="28"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Bottom"
-                                        CornerRadius="14"
+                                <Button Width="72" Height="72"
+                                        CornerRadius="36"
                                         Click="ChangePhoto_Click"
                                         ToolTipService.ToolTip="Change profile picture">
-                                    <FontIcon Glyph="&#xE114;" FontFamily="Segoe MDL2 Assets"/>
                                 </Button>
                             </Grid>
 
@@ -99,21 +96,6 @@
                                 <StackPanel Orientation="Horizontal" Spacing="10">
                                     <FontIcon Glyph="&#xE72E;" FontFamily="Segoe MDL2 Assets"/>
                                     <TextBlock Text="Change password"/>
-                                </StackPanel>
-                            </Button>
-
-                            <ToggleSwitch Header="Two-factor authentication"
-                                          IsOn="{x:Bind ViewModel.IsTwoFactorEnabled, Mode=TwoWay}"
-                                          OnContent="On" OffContent="Off"/>
-
-                            <ToggleSwitch Header="Sign-in alerts"
-                                          IsOn="{x:Bind ViewModel.SignInAlertsEnabled, Mode=TwoWay}"
-                                          OnContent="On" OffContent="Off"/>
-
-                            <Button Click="ViewSessions_Click" HorizontalAlignment="Stretch">
-                                <StackPanel Orientation="Horizontal" Spacing="10">
-                                    <FontIcon Glyph="&#xE8D7;" FontFamily="Segoe MDL2 Assets"/>
-                                    <TextBlock Text="View active sessions"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
@@ -140,12 +122,7 @@
                                     <TextBlock Text="Delete account"/>
                                 </StackPanel>
                             </Button>
-
-                            <TextBlock Text="Tip: you can hide Delete account behind a feature flag or extra confirmation."
-                                       Opacity="0.6"
-                                       FontSize="12"/>
                         </StackPanel>
-
                     </StackPanel>
                 </Border>
             </Grid>

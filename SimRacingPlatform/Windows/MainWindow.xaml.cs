@@ -38,7 +38,14 @@ namespace SimRacingPlatform.Windows
 
         public void NavigateTo(Type pageType)
         {
-            ContentFrame.Navigate(pageType);
+            if (DispatcherQueue.HasThreadAccess)
+            {
+                ContentFrame.Navigate(pageType);
+            }
+            else
+            {
+                DispatcherQueue.TryEnqueue(() => ContentFrame.Navigate(pageType));
+            }
         }
 
         public void NavigateBack()

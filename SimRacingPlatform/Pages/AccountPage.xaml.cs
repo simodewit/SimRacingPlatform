@@ -5,7 +5,6 @@ using Microsoft.UI.Xaml.Navigation;
 using SimRacingPlatform.Utilities;
 using SimRacingPlatform.Windows;
 using System;
-using Firebase.Auth;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -57,17 +56,7 @@ namespace SimRacingPlatform.Pages
 
         }
 
-        private void EditProfile_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void ViewSessions_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ManageNotifications_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -87,7 +76,7 @@ namespace SimRacingPlatform.Pages
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
             
-        public BitmapImage ProfileImage { get; } = new BitmapImage(new Uri("ms-appx:///Assets/DefaultProfile.png"));
+        public BitmapImage ProfileImage { get; } = new BitmapImage(new Uri("ms-appx:///Assets/SquareLogo.png"));
 
         private string _displayName = "";
         public string DisplayName
@@ -108,20 +97,6 @@ namespace SimRacingPlatform.Pages
         {
             get => _uid;
             set { _uid = value; Raise(); }
-        }
-
-        private bool _isTwoFactorEnabled;
-        public bool IsTwoFactorEnabled
-        {
-            get => _isTwoFactorEnabled;
-            set { _isTwoFactorEnabled = value; Raise(); }
-        }
-
-        private bool _signInAlertsEnabled = true;
-        public bool SignInAlertsEnabled
-        {
-            get => _signInAlertsEnabled;
-            set { _signInAlertsEnabled = value; Raise(); }
         }
     }
 }
