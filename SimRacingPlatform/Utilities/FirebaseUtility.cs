@@ -88,7 +88,7 @@ namespace SimRacingPlatform.Utilities
             {
                 requestType = "VERIFY_EMAIL",
                 idToken,
-                continueUrl = "https://SimRacingPlatform.web.app/verified"
+                continueUrl = "https://simracingplatform-1370c.web.app/verified"
             };
 
             var response = await _http.PostAsJsonAsync(url, payload);

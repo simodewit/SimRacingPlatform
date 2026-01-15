@@ -56,11 +56,6 @@ namespace SimRacingPlatform.Pages
 
         }
 
-        private void ViewSessions_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void DeleteAccount_Click(object sender, RoutedEventArgs e)
         {
 
