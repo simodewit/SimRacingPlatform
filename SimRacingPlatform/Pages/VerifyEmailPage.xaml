@@ -1,0 +1,93 @@
+<Page
+    x:Class="SimRacingPlatform.Pages.VerifyEmailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Border
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="420"
+            MaxWidth="520"
+            Padding="28"
+            CornerRadius="18"
+            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1">
+
+            <Border.Shadow>
+                <ThemeShadow />
+            </Border.Shadow>
+
+            <StackPanel Spacing="14">
+
+                <Image
+                    Height="72"
+                    HorizontalAlignment="Center"
+                    Stretch="Uniform"
+                    Source="ms-appx:///Assets/SquareLogo.png" />
+
+                <StackPanel Spacing="6" HorizontalAlignment="Center">
+                    <TextBlock
+                        Text="Verify your email"
+                        FontSize="24"
+                        FontWeight="SemiBold"
+                        TextAlignment="Center" />
+
+                    <TextBlock TextAlignment="Center"
+                               Opacity="0.75"
+                               TextWrapping="WrapWholeWords">
+                        <Run Text="We sent a verification link to " />
+                        <Run x:Name="EmailRun" FontWeight="SemiBold" Text="your email address" />
+                        <Run Text="." />
+                        <LineBreak />
+                        <Run Text="Click the link in the email to activate your account." />
+                    </TextBlock>
+                </StackPanel>
+
+                <TextBlock
+                    Text="Tip: Check your spam/junk folder if you don’t see it within a few minutes."
+                    TextAlignment="Center"
+                    Opacity="0.7"
+                    TextWrapping="WrapWholeWords"
+                    Margin="0,6,0,0" />
+
+                <!-- Buttons: Back left, Resend right -->
+                <Grid Margin="0,12,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Grid.Column="0"
+                        Content="Back"
+                        Height="40"
+                        MinWidth="110"
+                        CornerRadius="10"
+                        Click="BackClick" />
+
+                    <Button
+                        x:Name="ResendButton"
+                        Grid.Column="2"
+                        Content="Resend email"
+                        Height="40"
+                        MinWidth="160"
+                        CornerRadius="10"
+                        Click="ResendClick" />
+                </Grid>
+
+                <TextBlock
+                    x:Name="StatusText"
+                    Text=""
+                    TextAlignment="Center"
+                    Visibility="Collapsed"
+                    Margin="0,4,0,0" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

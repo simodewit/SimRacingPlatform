@@ -52,6 +52,17 @@ namespace SimRacingPlatform.Utilities
             }
         }
 
+        public static void ShowTitleBar(Window window)
+        {
+            window.ExtendsContentIntoTitleBar = false;
+
+            if (GetAppWindow(window).Presenter is OverlappedPresenter presenter)
+            {
+                presenter.IsMinimizable = true;
+                presenter.IsMaximizable = true;
+            }
+        }
+
         public static void DisableResizing(Window window)
         {
             if (GetAppWindow(window).Presenter is OverlappedPresenter presenter)

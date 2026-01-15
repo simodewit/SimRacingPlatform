@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SimRacingPlatform.Pages;
+using SimRacingPlatform.Utilities;
 using System;
 
 namespace SimRacingPlatform.Windows
@@ -13,8 +14,8 @@ namespace SimRacingPlatform.Windows
 {
             typeof(LoginPage),
             typeof(RegisterPage),
-            // typeof(ForgotPasswordPage),
-            // typeof(VerifyEmailPage),
+            typeof(ForgotPasswordPage),
+            typeof(VerifyEmailPage),
         };
 
         public MainWindow()

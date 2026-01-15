@@ -1,6 +1,7 @@
 using Firebase.Auth;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using SimRacingPlatform.Utilities;
 using SimRacingPlatform.Windows;
 using System.Diagnostics;
 
@@ -33,7 +34,16 @@ namespace SimRacingPlatform.Pages
                 var cred = await App.AuthService.LoginAsync(email, password);
                 var idToken = await cred.User.GetIdTokenAsync();
 
-                MainWindow.Instance.NavigateTo(typeof(LandingPage));
+                bool verified = await FirebaseUtility.Instance.IsCurrentUserEmailVerifiedAsync();
+
+                if (!verified)
+                {
+                    MainWindow.Instance.NavigateTo(typeof(VerifyEmailPage));
+                }
+                else
+                {
+                    MainWindow.Instance.NavigateTo(typeof(LandingPage));
+                }
             }
             catch(FirebaseAuthException ex)
             {
@@ -44,6 +54,11 @@ namespace SimRacingPlatform.Pages
         private void RegisterLinkClick(object sender, RoutedEventArgs args)
         {
             MainWindow.Instance.NavigateTo(typeof(RegisterPage));
+        }
+
+        private void ForgotPasswordClick(object sender, RoutedEventArgs args)
+        {
+            MainWindow.Instance.NavigateTo(typeof(ForgotPasswordPage));
         }
     }
 }

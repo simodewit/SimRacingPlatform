@@ -85,10 +85,13 @@
     <None Remove="Assets\Icons\WideTile\Wide310x150Logo.scale-200.png" />
     <None Remove="Assets\Icons\WideTile\Wide310x150Logo.scale-400.png" />
     <None Remove="Assets\SquareLogo.png" />
+    <None Remove="Pages\EmailConfirmedPage.xaml" />
+    <None Remove="Pages\ForgotPasswordPage.xaml" />
     <None Remove="Pages\LandingPage.xaml" />
     <None Remove="Pages\LoginPage.xaml" />
     <None Remove="Pages\RegisterPage.xaml" />
     <None Remove="Pages\SideBar.xaml" />
+    <None Remove="Pages\VerifyEmailPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -109,6 +112,21 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7463" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
     <PackageReference Include="Velopack" Version="0.0.1298" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\EmailConfirmedPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\VerifyEmailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\ForgotPasswordPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\SideBar.xaml">

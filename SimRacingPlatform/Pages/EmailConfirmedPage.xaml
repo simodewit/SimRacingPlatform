@@ -1,0 +1,78 @@
+<Page
+    x:Class="SimRacingPlatform.Pages.EmailConfirmedPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Border
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="420"
+            MaxWidth="520"
+            Padding="28"
+            CornerRadius="18"
+            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1">
+
+            <Border.Shadow>
+                <ThemeShadow />
+            </Border.Shadow>
+
+            <StackPanel Spacing="14">
+
+                <!-- App logo -->
+                <Image
+                    Height="72"
+                    HorizontalAlignment="Center"
+                    Stretch="Uniform"
+                    Source="ms-appx:///Assets/SquareLogo.png" />
+
+                <!-- Title + main message -->
+                <StackPanel Spacing="6" HorizontalAlignment="Center">
+                    <TextBlock
+                        Text="Email verified"
+                        FontSize="24"
+                        FontWeight="SemiBold"
+                        TextAlignment="Center" />
+
+                    <TextBlock
+                        TextAlignment="Center"
+                        Opacity="0.75"
+                        TextWrapping="WrapWholeWords">
+                        Your email address has been successfully confirmed.
+                    </TextBlock>
+                </StackPanel>
+
+                <!-- Countdown text (you update from code-behind) -->
+                <TextBlock
+                    x:Name="RedirectText"
+                    Text="Redirecting in 5 seconds…"
+                    TextAlignment="Center"
+                    Opacity="0.7"
+                    TextWrapping="WrapWholeWords"
+                    Margin="0,6,0,0" />
+
+                <!-- Optional: action buttons similar to your layout -->
+                <Grid Margin="0,12,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+
+                <!-- Status line if you want to show errors/info -->
+                <TextBlock
+                    x:Name="StatusText"
+                    Text=""
+                    TextAlignment="Center"
+                    Visibility="Collapsed"
+                    Margin="0,4,0,0" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

@@ -43,6 +43,11 @@
         <uap:SplashScreen Image="Assets\Icons\SplashScreen\SplashScreen.png" />
         <uap:LockScreen BadgeLogo="Assets\Icons\BadgeLogo\BadgeLogo.png" Notification="badge"/>
       </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="simracingplatform"/>
+        </uap:Extension>
+      </Extensions>
     </Application>
   </Applications>
 
