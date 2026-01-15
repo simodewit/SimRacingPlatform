@@ -82,7 +82,6 @@
                                            FontSize="18"
                                            FontWeight="SemiBold"/>
                                 <TextBlock Text="{x:Bind ViewModel.Email}" Opacity="0.75"/>
-                                <TextBlock Text="{x:Bind ViewModel.DisplayName}" Opacity="0.6"/>
                             </StackPanel>
                         </Grid>
 
