@@ -14,17 +14,19 @@ namespace SimRacingPlatform.Pages
 
         private void BackClick(object sender, RoutedEventArgs args)
         {
-            MainWindow.Instance.NavigateBack();
+            if (!MainWindow.Instance.CanGoBack)
+            {
+                MainWindow.Instance.NavigateTo(typeof(LoginPage));
+            }
+            else
+            {
+                MainWindow.Instance.NavigateBack();
+            }
         }
 
         private async void ResendClick(object sender, RoutedEventArgs args)
         {
             await FirebaseUtility.Instance.SendVerificationEmailForCurrentUserAsync();
-        }
-
-        private void ConfirmedEmail()
-        {
-            MainWindow.Instance.NavigateTo(typeof(EmailConfirmedPage));
         }
     }
 }

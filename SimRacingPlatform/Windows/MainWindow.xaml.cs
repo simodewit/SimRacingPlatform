@@ -10,6 +10,8 @@ namespace SimRacingPlatform.Windows
     {
         public static MainWindow Instance;
 
+        public bool CanGoBack => ContentFrame.CanGoBack;
+
         private static readonly Type[] AuthPages =
 {
             typeof(LoginPage),
@@ -32,15 +34,39 @@ namespace SimRacingPlatform.Windows
 
             ContentFrame.Navigated += ContentFrame_Navigated;
 
+            ContentFrame.Loaded += MainWindow_Loaded;
+        }
+
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
             var user = App.AuthService.Client.User;
 
-            if (user != null)
+            if (user == null)
             {
-                NavigateTo(typeof(LandingPage));
+                NavigateTo(typeof(LoginPage));
+                return;
+            }
+
+            bool isVerified = false;
+            try
+            {
+                isVerified = await FirebaseUtility.Instance.IsCurrentUserEmailVerifiedAsync();
+            }
+            catch
+            {
+                isVerified = false;
+                FirebaseUtility.Instance.Logout();
+                NavigateTo(typeof(LoginPage));
+                return;
+            }
+
+            if (!isVerified)
+            {
+                NavigateTo(typeof(VerifyEmailPage));
             }
             else
             {
-                NavigateTo(typeof(LoginPage));
+                NavigateTo(typeof(LandingPage));
             }
         }
 
