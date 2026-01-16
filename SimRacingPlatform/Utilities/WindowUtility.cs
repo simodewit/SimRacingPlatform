@@ -4,7 +4,9 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SimRacingPlatform.Windows;
 using System;
+using System.IO;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.Graphics;
 using Windows.UI;
 using WinRT.Interop;
@@ -13,8 +15,8 @@ namespace SimRacingPlatform.Utilities
 {
     public static class WindowUtility
     {
-        public static Color standardBackground = Color.FromArgb(255,25,25,59);
-        public static Color standardForeground = Color.FromArgb(255,46,255,255);
+        public static Color standardBackground = Color.FromArgb(255,43,43,43);
+        public static Color standardForeground = Color.FromArgb(255,255,255,255);
 
         private static AppWindow GetAppWindow(Window window)
         {
@@ -28,14 +30,18 @@ namespace SimRacingPlatform.Utilities
             window.Title = title;
         }
 
-        public static void SetIcon(Window window, string iconPath)
+        public static void SetIcon(Window window, string localIconPath)
         {
+            var path = Path.Combine(Package.Current.InstalledLocation.Path, localIconPath);
             var appWindow = GetAppWindow(window);
-            appWindow.SetIcon(iconPath);
+            appWindow.SetIcon(path);
         }
 
-        public static void SetTitleBarColors(Window window, Color background, Color foreground)
+        public static void SetTitleBarColors(Window window, Color? background = null, Color? foreground = null)
         {
+            background = standardBackground;
+            foreground = standardForeground;
+
             var titleBar = GetAppWindow(window).TitleBar;
 
             titleBar.BackgroundColor = background;

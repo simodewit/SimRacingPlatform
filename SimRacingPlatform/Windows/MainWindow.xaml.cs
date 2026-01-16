@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SimRacingPlatform.Pages;
+using SimRacingPlatform.Utilities;
 using System;
 
 namespace SimRacingPlatform.Windows
@@ -24,6 +25,10 @@ namespace SimRacingPlatform.Windows
         {
             Instance = this;
             InitializeComponent();
+
+            WindowUtility.SetTitle(this, "SimRacingPlatform");
+            WindowUtility.SetIcon(this, "Assets/SquareLogo.ico");
+            WindowUtility.SetTitleBarColors(this);
 
             ContentFrame.Navigated += ContentFrame_Navigated;
 
