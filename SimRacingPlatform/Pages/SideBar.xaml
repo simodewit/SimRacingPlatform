@@ -49,8 +49,8 @@
 
         <!-- Top -->
         <StackPanel Grid.Row="0" Spacing="4" Margin="0,0,0,12">
-            <TextBlock Text="MyApp" FontSize="22" FontWeight="SemiBold"/>
-            <TextBlock Text="Your catch phrase goes here"
+            <TextBlock Text="SimRacingPlatform" FontSize="22" FontWeight="SemiBold"/>
+            <TextBlock Text="Yes I still have a lot of templated stuff"
                        Opacity="0.75"
                        TextWrapping="WrapWholeWords"/>
         </StackPanel>

@@ -93,6 +93,7 @@
     <None Remove="Pages\PasswordChangedPage.xaml" />
     <None Remove="Pages\PasswordResetSentPage.xaml" />
     <None Remove="Pages\RegisterPage.xaml" />
+    <None Remove="Pages\SettingsPage.xaml" />
     <None Remove="Pages\SideBar.xaml" />
     <None Remove="Pages\Tool1.xaml" />
     <None Remove="Pages\VerifyEmailPage.xaml" />
@@ -116,6 +117,11 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7463" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
     <PackageReference Include="Velopack" Version="0.0.1298" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\PasswordChangedPage.xaml">

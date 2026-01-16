@@ -83,7 +83,8 @@
         </Style>
     </Page.Resources>
 
-    <Grid>
+    <!-- Fixed-height root grid -->
+    <Grid Height="600" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -135,7 +136,7 @@
                                 <Button Width="72" Height="72"
                                         CornerRadius="36"
                                         DataContext="{x:Bind ViewModel}"
-                                    Click="ChangePhoto_Click"
+                                        Click="ChangePhoto_Click"
                                         ToolTipService.ToolTip="Change profile picture"
                                         Style="{StaticResource AvatarButtonStyle}"/>
                             </Grid>

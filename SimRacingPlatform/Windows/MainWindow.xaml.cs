@@ -60,6 +60,24 @@ namespace SimRacingPlatform.Windows
 
         public void NavigateBack()
         {
+            if (!ContentFrame.CanGoBack)
+                return;
+
+            for (int i = ContentFrame.BackStack.Count - 1; i >= 0; i--)
+            {
+                var entry = ContentFrame.BackStack[i];
+
+                if (entry.SourcePageType == typeof(AccountPage) ||
+                    entry.SourcePageType == typeof(SettingsPage))
+                {
+                    ContentFrame.BackStack.RemoveAt(i);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
             if (ContentFrame.CanGoBack)
             {
                 ContentFrame.GoBack();

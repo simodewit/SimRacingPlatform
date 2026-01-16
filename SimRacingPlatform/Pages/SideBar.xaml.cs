@@ -65,7 +65,7 @@ namespace SimRacingPlatform.Pages
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow.Instance.NavigateTo(typeof(SettingsPage));
         }
     }
 }
