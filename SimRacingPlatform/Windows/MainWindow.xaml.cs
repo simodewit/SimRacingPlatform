@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SimRacingPlatform.Pages;
+using SimRacingPlatform.Utilities;
 using System;
 
 namespace SimRacingPlatform.Windows
