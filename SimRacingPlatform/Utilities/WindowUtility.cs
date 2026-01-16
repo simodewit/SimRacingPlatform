@@ -1,6 +1,10 @@
 ﻿using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using SimRacingPlatform.Windows;
+using System;
+using System.Threading.Tasks;
 using Windows.Graphics;
 using Windows.UI;
 using WinRT.Interop;
@@ -84,6 +88,70 @@ namespace SimRacingPlatform.Utilities
         public static void SetSize(Window window, int width = 1280, int height = 720)
         {
             GetAppWindow(window).Resize(new SizeInt32(width, height));
+        }
+
+        public static Task<ContentDialogResult> ShowContentDialogAsync(Func<ContentDialog> dialogFactory)
+        {
+            var tcs = new TaskCompletionSource<ContentDialogResult>();
+
+            // Always use the main window's dispatcher
+            var dispatcher = MainWindow.Instance.DispatcherQueue;
+
+            dispatcher.TryEnqueue(async () =>
+            {
+                try
+                {
+                    // Create dialog on UI thread
+                    var dialog = dialogFactory();
+
+                    // Ensure XamlRoot is set
+                    if (dialog.XamlRoot is null)
+                    {
+                        dialog.XamlRoot = MainWindow.Instance.Content.XamlRoot;
+                    }
+
+                    var result = await dialog.ShowAsync();
+                    tcs.SetResult(result);
+                }
+                catch (Exception ex)
+                {
+                    tcs.SetException(ex);
+                }
+            });
+
+            return tcs.Task;
+        }
+
+        public static Task<ContentDialogResult> ShowMessageAsync(
+            string title,
+            string message,
+            string closeButtonText = "OK")
+        {
+            return ShowContentDialogAsync(() =>
+                new ContentDialog
+                {
+                    Title = title,
+                    Content = message,
+                    CloseButtonText = closeButtonText,
+                    DefaultButton = ContentDialogButton.Close
+                });
+        }
+
+        public static Task<ContentDialogResult> ShowMessageAsync(
+            string title,
+            string message,
+            string primaryButtonText,
+            string closeButtonText)
+        {
+            return ShowContentDialogAsync(() =>
+                new ContentDialog
+                {
+                    Title = title,
+                    Content = message,
+                    PrimaryButtonText = primaryButtonText,
+                    CloseButtonText = closeButtonText,
+                    DefaultButton = ContentDialogButton.Primary
+                });
         }
     }
 }

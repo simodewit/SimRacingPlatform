@@ -40,9 +40,97 @@ namespace SimRacingPlatform.Pages
             MainWindow.Instance.NavigateBack();
         }
 
-        private void ChangePassword_Click(object sender, RoutedEventArgs e)
+        private async void ChangePassword_Click(object sender, RoutedEventArgs e)
         {
+            // Create controls *here* so we can read them later
+            var oldPasswordBox = new PasswordBox
+            {
+                Header = "Current password",
+                Margin = new Thickness(0, 0, 0, 8)
+            };
 
+            var newPasswordBox = new PasswordBox
+            {
+                Header = "New password",
+                Margin = new Thickness(0, 0, 0, 8)
+            };
+
+            var confirmPasswordBox = new PasswordBox
+            {
+                Header = "Confirm new password"
+            };
+
+            // Show the dialog via the utility
+            var result = await WindowUtility.ShowContentDialogAsync(() =>
+            {
+                var panel = new StackPanel
+                {
+                    Spacing = 8
+                };
+                panel.Children.Add(oldPasswordBox);
+                panel.Children.Add(newPasswordBox);
+                panel.Children.Add(confirmPasswordBox);
+
+                return new ContentDialog
+                {
+                    Title = "Change password",
+                    Content = panel,
+                    PrimaryButtonText = "Change password",
+                    CloseButtonText = "Cancel",
+                    DefaultButton = ContentDialogButton.Primary
+                    // XamlRoot will be set in the utility if needed
+                };
+            });
+
+            if (result != ContentDialogResult.Primary)
+                return;
+
+            // Read values after dialog closes
+            var oldPassword = oldPasswordBox.Password;
+            var newPassword = newPasswordBox.Password;
+            var confirmPassword = confirmPasswordBox.Password;
+
+            // Basic validation
+            if (string.IsNullOrWhiteSpace(oldPassword) ||
+                string.IsNullOrWhiteSpace(newPassword) ||
+                string.IsNullOrWhiteSpace(confirmPassword))
+            {
+                await WindowUtility.ShowMessageAsync(
+                    "Change password",
+                    "Please fill in all fields.");
+
+                return;
+            }
+
+            if (!string.Equals(newPassword, confirmPassword, StringComparison.Ordinal))
+            {
+                await WindowUtility.ShowMessageAsync(
+                    "Change password",
+                    "The new passwords do not match.");
+
+                return;
+            }
+
+            try
+            {
+                await FirebaseUtility.Instance.ChangePasswordAsync(oldPassword, newPassword);
+
+                await WindowUtility.ShowMessageAsync(
+                    "Password changed",
+                    "Your password has been changed successfully.");
+            }
+            catch (InvalidOperationException ex) when (ex.Message.StartsWith("The current password is incorrect", StringComparison.Ordinal))
+            {
+                await WindowUtility.ShowMessageAsync(
+                    "Change password",
+                    "The current password you entered is incorrect.");
+            }
+            catch (Exception ex)
+            {
+                await WindowUtility.ShowMessageAsync(
+                    "Error changing password",
+                    $"Something went wrong while changing your password:\n{ex.Message}");
+            }
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)

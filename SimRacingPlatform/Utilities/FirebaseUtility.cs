@@ -1,8 +1,6 @@
 ﻿using Firebase.Auth;
 using Firebase.Auth.Providers;
 using Firebase.Auth.Repository;
-using SimRacingPlatform.Pages;
-using SimRacingPlatform.Windows;
 using System;
 using System.Diagnostics;
 using System.Net.Http;
@@ -125,6 +123,39 @@ namespace SimRacingPlatform.Utilities
             response.EnsureSuccessStatusCode();
 
             Client.SignOut();
+        }
+
+        public async Task ChangePasswordAsync(string currentPassword, string newPassword)
+        {
+            if (CurrentUser is null)
+            {
+                throw new InvalidOperationException("No signed-in user.");
+            }
+
+            var email = CurrentUser.Info.Email;
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                throw new InvalidOperationException("Current user does not have an email address.");
+            }
+
+            try
+            {
+                // Re-authenticate the user with the old password
+                await Client.SignInWithEmailAndPasswordAsync(email, currentPassword);
+            }
+            catch (FirebaseAuthException ex)
+            {
+                // Wrap it so the UI can distinguish "wrong password" from other errors if needed
+                throw new InvalidOperationException("The current password is incorrect.", ex);
+            }
+
+            // After successful re-authentication, change the password
+            if (Client.User is null)
+            {
+                throw new InvalidOperationException("User is no longer signed in.");
+            }
+
+            await Client.User.ChangePasswordAsync(newPassword);
         }
     }
 }
