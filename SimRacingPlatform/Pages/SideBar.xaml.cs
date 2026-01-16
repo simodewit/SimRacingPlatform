@@ -48,14 +48,14 @@ namespace SimRacingPlatform.Pages
             MainWindow.Instance.NavigateTo(typeof(LandingPage));
         }
 
-        private void Projects_Click(object sender, RoutedEventArgs e)
+        private void FirstTool_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow.Instance.NavigateTo(typeof(Tool1));
         } 
 
-        private void Clients_Click(object sender, RoutedEventArgs e)
+        private void SecondTool_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow.Instance.NavigateTo(typeof(Tool2));
         }
 
         private void Profile_Click(object sender, RoutedEventArgs e)

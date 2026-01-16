@@ -91,6 +91,7 @@
     <None Remove="Pages\LoginPage.xaml" />
     <None Remove="Pages\RegisterPage.xaml" />
     <None Remove="Pages\SideBar.xaml" />
+    <None Remove="Pages\Tool1.xaml" />
     <None Remove="Pages\VerifyEmailPage.xaml" />
   </ItemGroup>
 
@@ -112,6 +113,14 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7463" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
     <PackageReference Include="Velopack" Version="0.0.1298" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Tool2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Tool1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\EmailConfirmedPage.xaml">
