@@ -2,20 +2,42 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SimRacingPlatform.Windows;
 using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace SimRacingPlatform.Pages
 {
-    public sealed partial class EmailConfirmedPage : Page
+    public sealed partial class EmailConfirmedPage : Page, INotifyPropertyChanged
     {
         private DispatcherTimer _timer;
-        private int _secondsRemaining = 5;
+        private int _secondsRemaining = 3;
 
-        public string CountdownText { get; set; } = "Redirecting in 5 seconds...";
+        private string _countdownText = "Redirecting in 3 seconds...";
+        public string CountdownText
+        {
+            get => _countdownText;
+            set
+            {
+                if (_countdownText != value)
+                {
+                    _countdownText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public EmailConfirmedPage()
         {
             InitializeComponent();
+            DataContext = this;
             StartCountdown();
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void StartCountdown()

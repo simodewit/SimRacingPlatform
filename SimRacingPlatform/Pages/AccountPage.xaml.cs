@@ -56,9 +56,45 @@ namespace SimRacingPlatform.Pages
 
         }
 
-        private void DeleteAccount_Click(object sender, RoutedEventArgs e)
+        private async void DeleteAccount_Click(object sender, RoutedEventArgs e)
         {
+            var dialog = new ContentDialog
+            {
+                Title = "Delete account?",
+                Content = "This will permanently delete your account and all associated data. " +
+                          "This action cannot be undone. Are you sure you want to continue?",
+                PrimaryButtonText = "Delete account",
+                CloseButtonText = "Cancel",
+                DefaultButton = ContentDialogButton.Close,
+                XamlRoot = this.XamlRoot
+            };
 
+            var result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                try
+                {
+                    await FirebaseUtility.Instance.DeleteCurrentUserAsync();
+                    MainWindow.Instance.NavigateTo(typeof(LoginPage));
+                }
+                catch (Exception ex)
+                {
+                    var errorDialog = new ContentDialog
+                    {
+                        Title = "Error deleting account",
+                        Content = $"Something went wrong while deleting your account:\n{ex.Message}",
+                        CloseButtonText = "OK",
+                        XamlRoot = this.XamlRoot
+                    };
+
+                    await errorDialog.ShowAsync();
+                }
+            }
+            else
+            {
+
+            }
         }
     }
 

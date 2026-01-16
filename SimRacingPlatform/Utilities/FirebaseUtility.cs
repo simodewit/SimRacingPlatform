@@ -1,6 +1,8 @@
 ﻿using Firebase.Auth;
 using Firebase.Auth.Providers;
 using Firebase.Auth.Repository;
+using SimRacingPlatform.Pages;
+using SimRacingPlatform.Windows;
 using System;
 using System.Diagnostics;
 using System.Net.Http;
@@ -101,6 +103,28 @@ namespace SimRacingPlatform.Utilities
             {
                 Debug.WriteLine(ex);
             }
+        }
+
+        public async Task DeleteCurrentUserAsync()
+        {
+            if (CurrentUser is null)
+            {
+                throw new InvalidOperationException("No signed-in user.");
+            }
+
+            var idToken = await CurrentUser.GetIdTokenAsync();
+
+            var url = $"https://identitytoolkit.googleapis.com/v1/accounts:delete?key={_apiKey}";
+
+            var payload = new
+            {
+                idToken
+            };
+
+            var response = await _http.PostAsJsonAsync(url, payload);
+            response.EnsureSuccessStatusCode();
+
+            Client.SignOut();
         }
     }
 }
