@@ -1,0 +1,207 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>SimRacingPlatform account action</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      :root {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        color-scheme: dark;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #202020;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .card {
+        background: #2b2b2b;
+        border-radius: 18px;
+        padding: 34px 32px 28px;
+        max-width: 440px;
+        width: calc(100% - 32px);
+        min-height: 280px;
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.65);
+        text-align: center;
+        border: 1px solid #3a3a3a;
+      }
+
+      .logo {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 18px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #1f1f1f;
+        border: 1px solid #3a3a3a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-size: 1.4rem;
+        color: #f3f4f6;
+      }
+
+      p {
+        margin: 0 0 16px;
+        color: #d1d5db;
+      }
+
+      .status.loading { color: #cbd5e1; }
+      .status.success { color: #22c55e; }
+      .status.error { color: #f87171; }
+
+      .button {
+        padding: 10px 22px;
+        border-radius: 999px;
+        border: none;
+        font-weight: 600;
+        background: #0078d4;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      input {
+        width: 100%;
+        padding: 9px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        border: 1px solid #4b5563;
+        background: #111827;
+        color: #fff;
+      }
+
+      form { display: none; }
+    </style>
+  </head>
+
+  <body>
+    <div class="card">
+      <div class="logo">
+        <img src="SquareLogo.png" alt="Logo" />
+      </div>
+
+      <h1 id="title">Processing…</h1>
+      <p id="status" class="status loading">Please wait…</p>
+
+      <!-- PASSWORD RESET FORM -->
+      <form id="reset-form">
+        <input id="password" type="password" placeholder="New password" />
+        <input id="confirm" type="password" placeholder="Confirm password" />
+        <button class="button" type="submit">Change password</button>
+      </form>
+
+      <button id="open-app" class="button" style="display:none">
+        Open SimRacingPlatform
+      </button>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+      import {
+        getAuth,
+        applyActionCode,
+        verifyPasswordResetCode,
+        confirmPasswordReset
+      } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAQoyg7y5OmivRsyOyy2eT7qUfFT16VI_M",
+        authDomain: "simracingplatform-1370c.firebaseapp.com",
+        projectId: "simracingplatform-1370c"
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const mode = params.get("mode");
+      const oobCode = params.get("oobCode");
+
+      const title = document.getElementById("title");
+      const status = document.getElementById("status");
+      const form = document.getElementById("reset-form");
+      const openApp = document.getElementById("open-app");
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      if (!mode || !oobCode) {
+        title.textContent = "Invalid link";
+        status.textContent = "This link is malformed or expired.";
+        status.className = "status error";
+        throw new Error("Invalid link");
+      }
+
+      // ---------------- VERIFY EMAIL ----------------
+      if (mode === "verifyEmail") {
+        title.textContent = "Email verification";
+
+        try {
+          await applyActionCode(auth, oobCode);
+          status.textContent = "Your email has been verified.";
+          status.className = "status success";
+
+          openApp.style.display = "inline-block";
+          openApp.onclick = () =>
+            window.location.href = "simracingplatform://verified";
+        } catch {
+          status.textContent = "Verification link is invalid or expired.";
+          status.className = "status error";
+        }
+      }
+
+      // ---------------- RESET PASSWORD ----------------
+      if (mode === "resetPassword") {
+        title.textContent = "Reset your password";
+
+        try {
+          await verifyPasswordResetCode(auth, oobCode);
+          status.textContent = "Enter a new password.";
+          status.className = "status success";
+          form.style.display = "block";
+
+          form.onsubmit = async (e) => {
+            e.preventDefault();
+
+            const pw = document.getElementById("password").value;
+            const cpw = document.getElementById("confirm").value;
+
+            if (pw !== cpw || pw.length < 6) {
+              status.textContent = "Passwords must match and be at least 6 characters.";
+              status.className = "status error";
+              return;
+            }
+
+            await confirmPasswordReset(auth, oobCode, pw);
+
+            title.textContent = "Password changed";
+            status.textContent = "Your password was updated successfully.";
+            form.style.display = "none";
+
+            openApp.style.display = "inline-block";
+            openApp.onclick = () =>
+              window.location.href = "simracingplatform://passwordResetDone";
+          };
+        } catch {
+          status.textContent = "Reset link is invalid or expired.";
+          status.className = "status error";
+        }
+      }
+    </script>
+  </body>
+</html>

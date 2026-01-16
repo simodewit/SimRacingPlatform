@@ -20,6 +20,8 @@ namespace SimRacingPlatform.Utilities
         public FirebaseAuthClient Client { get; }
         public User? CurrentUser => Client.User;
 
+        public string? LastPasswordResetEmail { get; set; }
+
         public FirebaseUtility(string apiKey, string authDomain)
         {
             Instance = this;
@@ -89,7 +91,6 @@ namespace SimRacingPlatform.Utilities
             {
                 requestType = "VERIFY_EMAIL",
                 idToken,
-                continueUrl = "https://simracingplatform-1370c.web.app/verified"
             };
 
             try
@@ -156,6 +157,28 @@ namespace SimRacingPlatform.Utilities
             }
 
             await Client.User.ChangePasswordAsync(newPassword);
+        }
+
+        public async Task SendPasswordResetEmailAsync(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("Email must not be empty.", nameof(email));
+
+            var url = $"https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key={_apiKey}";
+
+            var payload = new
+            {
+                requestType = "PASSWORD_RESET",
+                email
+                // The link will go to the URL configured in Firebase Console
+                // for the Password reset email template.
+            };
+
+            var response = await _http.PostAsJsonAsync(url, payload);
+            response.EnsureSuccessStatusCode();
+
+            // Remember it so the "Resend" button can use it later
+            LastPasswordResetEmail = email;
         }
     }
 }

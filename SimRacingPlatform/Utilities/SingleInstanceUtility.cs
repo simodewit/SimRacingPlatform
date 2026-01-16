@@ -8,7 +8,7 @@ namespace SimRacingPlatform.Utilities
 {
     class SingleInstanceUtility
     {
-        private const string InstanceKey = "main"; // any fixed key
+        private const string InstanceKey = "main";
 
         public static AppActivationArguments? InitializeSingleInstance(
             EventHandler<AppActivationArguments> onActivated)
@@ -16,42 +16,58 @@ namespace SimRacingPlatform.Utilities
             var current = AppInstance.GetCurrent();
             var activationArgs = current.GetActivatedEventArgs();
 
-            // Register or find the main instance
             var mainInstance = AppInstance.FindOrRegisterForKey(InstanceKey);
 
             if (!mainInstance.IsCurrent)
             {
-                // This is a second instance: redirect its activation to the main one and exit
                 mainInstance.RedirectActivationToAsync(activationArgs).AsTask().Wait();
                 return null;
             }
 
-            // We ARE the main instance -> listen for future activations (e.g. more protocol calls)
             current.Activated += onActivated;
-
             return activationArgs;
         }
 
         public static void HandleProtocolActivation(AppActivationArguments args)
         {
             if (args == null)
-            {
                 return;
-            }
 
             if (args.Kind != ExtendedActivationKind.Protocol)
-            {
                 return;
-            }
 
             if (args.Data is not IProtocolActivatedEventArgs protocolArgs)
-            {
                 return;
-            }
 
             Uri uri = protocolArgs.Uri;
 
-            MainWindow.Instance.NavigateTo(typeof(EmailConfirmedPage));
+            // simracingplatform://verified
+            // simracingplatform://passwordResetDone
+            var host = uri.Host?.ToLowerInvariant();
+
+            Type? targetPage = null;
+
+            switch (host)
+            {
+                case "verified":
+                    targetPage = typeof(EmailConfirmedPage);
+                    break;
+
+                case "passwordresetdone":
+                    // TODO: replace with the actual type of your password-changed page
+                    targetPage = typeof(PasswordChangedPage);
+                    break;
+
+                default:
+                    // Unknown deep link - optionally navigate to a default page
+                    // targetPage = typeof(HomePage);
+                    break;
+            }
+
+            if (targetPage != null)
+            {
+                MainWindow.Instance.NavigateTo(targetPage);
+            }
         }
     }
 }
