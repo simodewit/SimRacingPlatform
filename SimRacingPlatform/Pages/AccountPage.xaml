@@ -13,6 +13,74 @@
             <Setter Property="Opacity" Value="0.20"/>
             <Setter Property="Background" Value="{ThemeResource SystemControlForegroundBaseLowBrush}"/>
         </Style>
+
+        <!-- Avatar button style with hover overlay -->
+        <Style x:Key="AvatarButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Width="72" Height="72">
+                            <!-- Avatar -->
+                            <Ellipse x:Name="AvatarEllipse" Width="72" Height="72">
+                                <Ellipse.Fill>
+                                    <!-- Bind to ProfileImage on DataContext (AccountViewModel) -->
+                                    <ImageBrush ImageSource="{Binding ProfileImage}"
+                                                Stretch="UniformToFill"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                            <!-- Hover/press overlay -->
+                            <Border x:Name="Overlay"
+                                    CornerRadius="36"
+                                    Opacity="0"
+                                    Background="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}">
+                                <Grid>
+                                    <StackPanel HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Spacing="4">
+                                        <FontIcon Glyph="&#xE114;"
+                                                  FontFamily="Segoe MDL2 Assets"
+                                                  HorizontalAlignment="Center"/>
+                                        <TextBlock Text="Change"
+                                                   FontSize="12"
+                                                   HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- Visual states must be inside the root element of the template -->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="PointerOver">
+                                        <VisualState.Setters>
+                                            <Setter Target="Overlay.Opacity" Value="0.75"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Target="Overlay.Opacity" Value="0.9"/>
+                                            <Setter Target="AvatarEllipse.Opacity" Value="0.92"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <VisualState.Setters>
+                                            <Setter Target="Overlay.Opacity" Value="0"/>
+                                            <Setter Target="AvatarEllipse.Opacity" Value="0.5"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -62,19 +130,14 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
+                            <!-- Avatar with hover + click -->
                             <Grid>
-                                <Ellipse Width="72" Height="72">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{x:Bind ViewModel.ProfileImage}"
-                                                    Stretch="UniformToFill"/>
-                                    </Ellipse.Fill>
-                                </Ellipse>
-
                                 <Button Width="72" Height="72"
                                         CornerRadius="36"
-                                        Click="ChangePhoto_Click"
-                                        ToolTipService.ToolTip="Change profile picture">
-                                </Button>
+                                        DataContext="{x:Bind ViewModel}"
+                                    Click="ChangePhoto_Click"
+                                        ToolTipService.ToolTip="Change profile picture"
+                                        Style="{StaticResource AvatarButtonStyle}"/>
                             </Grid>
 
                             <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">

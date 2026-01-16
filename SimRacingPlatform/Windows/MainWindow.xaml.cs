@@ -44,6 +44,8 @@ namespace SimRacingPlatform.Windows
             }
         }
 
+        #region Navigation
+
         public void NavigateTo(Type pageType)
         {
             if (DispatcherQueue.HasThreadAccess)
@@ -63,6 +65,10 @@ namespace SimRacingPlatform.Windows
                 ContentFrame.GoBack();
             }
         }
+
+        #endregion
+
+        #region Sidebar
 
         private void ContentFrame_Navigated(object sender, Microsoft.UI.Xaml.Navigation.NavigationEventArgs args)
         {
@@ -98,5 +104,7 @@ namespace SimRacingPlatform.Windows
                 ContentFrame.SetValue(Grid.ColumnProperty, 1);
             }
         }
+
+        #endregion
     }
 }

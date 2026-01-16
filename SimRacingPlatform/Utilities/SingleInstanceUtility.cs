@@ -31,18 +31,22 @@ namespace SimRacingPlatform.Utilities
         public static void HandleProtocolActivation(AppActivationArguments args)
         {
             if (args == null)
+            {
                 return;
+            }
 
             if (args.Kind != ExtendedActivationKind.Protocol)
+            {
                 return;
+            }
 
             if (args.Data is not IProtocolActivatedEventArgs protocolArgs)
+            {
                 return;
+            }
 
             Uri uri = protocolArgs.Uri;
 
-            // simracingplatform://verified
-            // simracingplatform://passwordResetDone
             var host = uri.Host?.ToLowerInvariant();
 
             Type? targetPage = null;
@@ -50,18 +54,21 @@ namespace SimRacingPlatform.Utilities
             switch (host)
             {
                 case "verified":
+                {
                     targetPage = typeof(EmailConfirmedPage);
                     break;
+                }
 
                 case "passwordresetdone":
-                    // TODO: replace with the actual type of your password-changed page
+                {
                     targetPage = typeof(PasswordChangedPage);
                     break;
+                }
 
                 default:
-                    // Unknown deep link - optionally navigate to a default page
-                    // targetPage = typeof(HomePage);
+                {
                     break;
+                }
             }
 
             if (targetPage != null)

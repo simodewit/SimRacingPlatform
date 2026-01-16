@@ -29,7 +29,6 @@ namespace SimRacingPlatform
 
         private static void OnInstanceActivated(object? sender, AppActivationArguments args)
         {
-            // You can dispatch to the UI thread here if needed, or keep it simple.
             SingleInstanceUtility.HandleProtocolActivation(args);
         }
     }

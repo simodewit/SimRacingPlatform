@@ -1,12 +1,15 @@
 ﻿using Firebase.Auth;
 using Firebase.Auth.Providers;
 using Firebase.Auth.Repository;
+using Firebase.Storage;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace SimRacingPlatform.Utilities
 {
@@ -16,6 +19,10 @@ namespace SimRacingPlatform.Utilities
 
         private readonly string _apiKey;
         private static readonly HttpClient _http = new();
+
+        private const string StorageBucket = "simracingplatform-1370c.firebasestorage.app";
+
+        private readonly FirebaseStorage _storage;
 
         public FirebaseAuthClient Client { get; }
         public User? CurrentUser => Client.User;
@@ -36,6 +43,22 @@ namespace SimRacingPlatform.Utilities
             };
 
             Client = new FirebaseAuthClient(config);
+
+            _storage = new FirebaseStorage(
+                StorageBucket,
+                new FirebaseStorageOptions
+                {
+                    AuthTokenAsyncFactory = async () =>
+                    {
+                        if (CurrentUser is null)
+                        {
+                            throw new InvalidOperationException("No signed-in user for storage operations.");
+                        }
+
+                        return await CurrentUser.GetIdTokenAsync();
+                    },
+                    ThrowOnCancel = true
+                });
         }
 
         public async Task<UserCredential> RegisterAsync(string email, string password, string displayName)
@@ -67,7 +90,7 @@ namespace SimRacingPlatform.Utilities
             {
                 return false;
             }
-            
+
             var idToken = await CurrentUser.GetIdTokenAsync();
 
             var url = $"https://identitytoolkit.googleapis.com/v1/accounts:lookup?key={_apiKey}";
@@ -141,16 +164,13 @@ namespace SimRacingPlatform.Utilities
 
             try
             {
-                // Re-authenticate the user with the old password
                 await Client.SignInWithEmailAndPasswordAsync(email, currentPassword);
             }
             catch (FirebaseAuthException ex)
             {
-                // Wrap it so the UI can distinguish "wrong password" from other errors if needed
                 throw new InvalidOperationException("The current password is incorrect.", ex);
             }
 
-            // After successful re-authentication, change the password
             if (Client.User is null)
             {
                 throw new InvalidOperationException("User is no longer signed in.");
@@ -162,7 +182,9 @@ namespace SimRacingPlatform.Utilities
         public async Task SendPasswordResetEmailAsync(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
+            {
                 throw new ArgumentException("Email must not be empty.", nameof(email));
+            }
 
             var url = $"https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key={_apiKey}";
 
@@ -170,16 +192,116 @@ namespace SimRacingPlatform.Utilities
             {
                 requestType = "PASSWORD_RESET",
                 email
-                // The link will go to the URL configured in Firebase Console
-                // for the Password reset email template.
             };
 
             var response = await _http.PostAsJsonAsync(url, payload);
             response.EnsureSuccessStatusCode();
 
-            // Remember it so the "Resend" button can use it later
             LastPasswordResetEmail = email;
+        }
+
+        public async Task<string> UploadAndSetProfilePhotoAsync(StorageFile file)
+        {
+            var user = CurrentUser;
+            if (user is null)
+                throw new InvalidOperationException("No user is signed in.");
+
+            string uid = user.Uid;
+
+            await using var stream = await file.OpenStreamForReadAsync();
+
+            string objectName = $"profile_photos/{uid}/avatar.jpg";
+
+            var uploadTask = _storage
+                .Child(objectName)
+                .PutAsync(stream);
+
+            string downloadUrl = await uploadTask;
+
+            await UpdateUserProfilePhotoUrlAsync(downloadUrl);
+
+            return downloadUrl;
+        }
+
+        private async Task UpdateUserProfilePhotoUrlAsync(string photoUrl)
+        {
+            var user = CurrentUser;
+            if (user is null)
+            {
+                throw new InvalidOperationException("No user is signed in.");
+            }
+
+            var idToken = await user.GetIdTokenAsync(forceRefresh: true);
+
+            var url = $"https://identitytoolkit.googleapis.com/v1/accounts:update?key={_apiKey}";
+
+            var payload = new
+            {
+                idToken,
+                photoUrl,
+                returnSecureToken = true
+            };
+
+            var response = await _http.PostAsJsonAsync(url, payload);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var body = await response.Content.ReadAsStringAsync();
+                throw new InvalidOperationException($"Firebase accounts:update failed ({(int)response.StatusCode} {response.ReasonPhrase}).\n{body}");
+            }
+        }
+
+        public async Task<string?> GetProfilePhotoUrlAsync()
+        {
+            var user = CurrentUser;
+            if (user is null)
+                return null;
+
+            // 1) Try the Auth profile first
+            var fromAuth = user.Info.PhotoUrl;
+            if (!string.IsNullOrWhiteSpace(fromAuth))
+            {
+                return fromAuth;
+            }
+
+            // 2) Fall back to Storage path if needed
+            try
+            {
+                string objectName = $"profile_photos/{user.Uid}/avatar.jpg";
+
+                string url = await _storage
+                    .Child(objectName)
+                    .GetDownloadUrlAsync();
+
+                return url;
+            }
+            catch
+            {
+                // Object not found or rules blocked – just treat as "no avatar"
+                return null;
+            }
+        }
+
+        public async Task SaveCachedProfilePhotoUrlAsync(string url)
+        {
+            if (CurrentUser is null)
+                return;
+
+            var settings = ApplicationData.Current.LocalSettings;
+            settings.Values[$"avatarUrl:{CurrentUser.Uid}"] = url;
+
+            await Task.CompletedTask;
+        }
+
+        public string? TryGetCachedProfilePhotoUrl()
+        {
+            if (CurrentUser is null)
+                return null;
+
+            var settings = ApplicationData.Current.LocalSettings;
+            return settings.Values.TryGetValue($"avatarUrl:{CurrentUser.Uid}", out var value)
+                ? value as string
+                : null;
         }
     }
 }
-

@@ -6,7 +6,12 @@ using SimRacingPlatform.Utilities;
 using SimRacingPlatform.Windows;
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using WinRT.Interop;
 
 namespace SimRacingPlatform.Pages
 {
@@ -33,6 +38,23 @@ namespace SimRacingPlatform.Pages
             ViewModel.Email = user.Info.Email;
             ViewModel.DisplayName = user.Info.DisplayName;
             ViewModel.Uid = user.Uid;
+
+            // 1) Instant load: use cached avatar URL if we have one
+            var cachedUrl = FirebaseUtility.Instance.TryGetCachedProfilePhotoUrl();
+            if (!string.IsNullOrWhiteSpace(cachedUrl))
+            {
+                try
+                {
+                    ViewModel.ProfileImage = new BitmapImage(new Uri(cachedUrl));
+                }
+                catch
+                {
+                    // If something goes wrong, we just keep the default image.
+                }
+            }
+
+            // 2) Then refresh in background (multi-device, first run, etc.)
+            _ = LoadProfileImageAsync();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -42,7 +64,6 @@ namespace SimRacingPlatform.Pages
 
         private async void ChangePassword_Click(object sender, RoutedEventArgs e)
         {
-            // Create controls *here* so we can read them later
             var oldPasswordBox = new PasswordBox
             {
                 Header = "Current password",
@@ -60,7 +81,6 @@ namespace SimRacingPlatform.Pages
                 Header = "Confirm new password"
             };
 
-            // Show the dialog via the utility
             var result = await WindowUtility.ShowContentDialogAsync(() =>
             {
                 var panel = new StackPanel
@@ -78,36 +98,29 @@ namespace SimRacingPlatform.Pages
                     PrimaryButtonText = "Change password",
                     CloseButtonText = "Cancel",
                     DefaultButton = ContentDialogButton.Primary
-                    // XamlRoot will be set in the utility if needed
                 };
             });
 
             if (result != ContentDialogResult.Primary)
+            {
                 return;
+            }
 
-            // Read values after dialog closes
             var oldPassword = oldPasswordBox.Password;
             var newPassword = newPasswordBox.Password;
             var confirmPassword = confirmPasswordBox.Password;
 
-            // Basic validation
             if (string.IsNullOrWhiteSpace(oldPassword) ||
                 string.IsNullOrWhiteSpace(newPassword) ||
                 string.IsNullOrWhiteSpace(confirmPassword))
             {
-                await WindowUtility.ShowMessageAsync(
-                    "Change password",
-                    "Please fill in all fields.");
-
+                await WindowUtility.ShowMessageAsync("Change password", "Please fill in all fields.");
                 return;
             }
 
             if (!string.Equals(newPassword, confirmPassword, StringComparison.Ordinal))
             {
-                await WindowUtility.ShowMessageAsync(
-                    "Change password",
-                    "The new passwords do not match.");
-
+                await WindowUtility.ShowMessageAsync("Change password", "The new passwords do not match.");
                 return;
             }
 
@@ -139,9 +152,59 @@ namespace SimRacingPlatform.Pages
             MainWindow.Instance.NavigateTo(typeof(LoginPage));
         }
 
-        private void ChangePhoto_Click(object sender, RoutedEventArgs e)
+        private async void ChangePhoto_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                // File picker must be created on the UI thread
+                var picker = new FileOpenPicker
+                {
+                    SuggestedStartLocation = PickerLocationId.PicturesLibrary,
+                    ViewMode = PickerViewMode.Thumbnail
+                };
 
+                picker.FileTypeFilter.Add(".jpg");
+                picker.FileTypeFilter.Add(".jpeg");
+                picker.FileTypeFilter.Add(".png");
+                picker.FileTypeFilter.Add(".webp");
+
+                // WinUI 3: initialize picker with window handle
+                var hwnd = WindowNative.GetWindowHandle(MainWindow.Instance);
+                InitializeWithWindow.Initialize(picker, hwnd);
+
+                StorageFile file = await picker.PickSingleFileAsync();
+                if (file is null)
+                    return;
+
+                // Upload to Firebase Storage (can run off the UI thread)
+                string downloadUrl = await FirebaseUtility.Instance.UploadAndSetProfilePhotoAsync(file);
+
+                await FirebaseUtility.Instance.SaveCachedProfilePhotoUrlAsync(downloadUrl);
+
+                // Build a cache-busted URL *without* breaking existing query parameters
+                string uriString = downloadUrl;
+                string separator = uriString.Contains("?") ? "&" : "?";
+                uriString += $"{separator}t={DateTimeOffset.UtcNow.ToUnixTimeSeconds()}";
+
+                // Update UI on the UI thread
+                DispatcherQueue.TryEnqueue(async () =>
+                {
+                    ViewModel.ProfileImage = new BitmapImage(new Uri(uriString));
+                    await WindowUtility.ShowMessageAsync(
+                        "Profile updated",
+                        "Your profile picture has been changed.");
+                });
+            }
+            catch (Exception ex)
+            {
+                // Also show error dialog on the UI thread
+                DispatcherQueue.TryEnqueue(async () =>
+                {
+                    await WindowUtility.ShowMessageAsync(
+                        "Change photo",
+                        $"Could not update profile photo:\n{ex.Message}");
+                });
+            }
         }
 
         private async void DeleteAccount_Click(object sender, RoutedEventArgs e)
@@ -179,9 +242,31 @@ namespace SimRacingPlatform.Pages
                     await errorDialog.ShowAsync();
                 }
             }
-            else
-            {
+        }
 
+        private async Task LoadProfileImageAsync()
+        {
+            try
+            {
+                // Ask Firebase for the current "truth" (Auth or Storage)
+                var photoUrl = await FirebaseUtility.Instance.GetProfilePhotoUrlAsync();
+                if (string.IsNullOrWhiteSpace(photoUrl))
+                    return;
+
+                // Keep cache in sync
+                await FirebaseUtility.Instance.SaveCachedProfilePhotoUrlAsync(photoUrl);
+
+                var uri = new Uri(photoUrl);
+
+                // Update UI on the UI thread
+                DispatcherQueue.TryEnqueue(() =>
+                {
+                    ViewModel.ProfileImage = new BitmapImage(uri);
+                });
+            }
+            catch
+            {
+                // Silently keep whatever we already display
             }
         }
     }
@@ -194,8 +279,14 @@ namespace SimRacingPlatform.Pages
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-            
-        public BitmapImage ProfileImage { get; } = new BitmapImage(new Uri("ms-appx:///Assets/SquareLogo.png"));
+
+        // CHANGED: make ProfileImage settable so UI can update after upload
+        private BitmapImage _profileImage = new BitmapImage(new Uri("ms-appx:///Assets/SquareLogo.png"));
+        public BitmapImage ProfileImage
+        {
+            get => _profileImage;
+            set { _profileImage = value; Raise(); }
+        }
 
         private string _displayName = "";
         public string DisplayName
