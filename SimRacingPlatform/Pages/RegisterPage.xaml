@@ -53,26 +53,33 @@
                     x:Name="UsernameBox"
                     Header="Username"
                     PlaceholderText="Choose a username"
-                    Margin="0,10,0,0" />
+                    Margin="0,10,0,0"
+                    TextChanged="UsernameBox_TextChanged" />
 
                 <TextBox
                     x:Name="EmailBox"
                     Header="Email"
                     PlaceholderText="you@example.com"
-                    Text="" />
+                    Text=""
+                    InputScope="EmailSmtpAddress"
+                    IsSpellCheckEnabled="False"
+                    TextChanged="EmailBox_TextChanged" />
 
                 <PasswordBox
                     x:Name="PasswordBox"
                     Header="Password"
-                    PlaceholderText="Create a password" />
+                    PlaceholderText="Create a password"
+                    PasswordChanged="PasswordBox_PasswordChanged" />
 
                 <PasswordBox
                     x:Name="ConfirmPasswordBox"
                     Header="Confirm Password"
-                    PlaceholderText="Re-enter your password" />
+                    PlaceholderText="Re-enter your password"
+                    PasswordChanged="ConfirmPasswordBox_PasswordChanged" />
 
                 <!-- Button -->
                 <Button
+                    x:Name="RegisterButton"
                     Content="Register"
                     CornerRadius="10"
                     Height="40"
@@ -86,6 +93,7 @@
                     Text=""
                     Foreground="{ThemeResource SystemFillColorCriticalBrush}"
                     TextAlignment="Center"
+                    TextWrapping="Wrap"
                     Visibility="Collapsed"
                     Margin="0,4,0,0" />
             </StackPanel>
