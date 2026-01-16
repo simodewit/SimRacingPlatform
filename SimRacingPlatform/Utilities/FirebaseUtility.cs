@@ -2,6 +2,7 @@
 using Firebase.Auth.Providers;
 using Firebase.Auth.Repository;
 using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -91,8 +92,15 @@ namespace SimRacingPlatform.Utilities
                 continueUrl = "https://simracingplatform-1370c.web.app/verified"
             };
 
-            var response = await _http.PostAsJsonAsync(url, payload);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                var response = await _http.PostAsJsonAsync(url, payload);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
     }
 }
