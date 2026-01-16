@@ -9,90 +9,100 @@
       :root {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
           sans-serif;
-        color-scheme: light;
+        color-scheme: dark;
       }
 
-      * {
-        box-sizing: border-box;
-      }
+      * { box-sizing: border-box; }
 
       body {
         margin: 0;
         min-height: 100vh;
-        background: #e5e7eb; /* gray background */
+        background: #202020; /* dark gray background */
         display: flex;
         align-items: center;
         justify-content: center;
       }
 
       .card {
-        background: #ffffff;
-        border-radius: 16px;
-        padding: 24px 28px;
-        max-width: 420px;
-        width: 100%;
-        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+        background: #2b2b2b; /* lighter than background */
+        border-radius: 18px;
+        padding: 34px 32px 28px;
+        max-width: 440px;
+        width: calc(100% - 32px);
+        min-height: 280px;
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.65);
         text-align: center;
+        border: 1px solid #3a3a3a;
+      }
+
+      .logo {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 18px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #1f1f1f;
+        border: 1px solid #3a3a3a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
       }
 
       h1 {
-        margin: 0 0 12px;
+        margin: 0 0 10px;
         font-size: 1.4rem;
+        color: #f3f4f6;
       }
 
       p {
         margin: 0 0 16px;
-        color: #4b5563;
+        color: #d1d5db;
       }
 
       .status {
         font-size: 0.95rem;
         margin-bottom: 20px;
       }
-
-      .status.loading {
-        color: #6b7280;
-      }
-
-      .status.success {
-        color: #16a34a;
-      }
-
-      .status.error {
-        color: #dc2626;
-      }
+      .status.loading { color: #cbd5e1; }
+      .status.success { color: #22c55e; }
+      .status.error { color: #f87171; }
 
       .button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 10px 20px;
+        padding: 10px 22px;
         border-radius: 999px;
         border: none;
         font-size: 0.95rem;
         font-weight: 600;
-        text-decoration: none;
         cursor: pointer;
-        background: #111827;
+        background: #0078d4; /* WinUI-ish blue */
         color: #ffffff;
         transition: transform 0.08s ease-out, box-shadow 0.08s ease-out,
           background 0.15s ease-out, opacity 0.15s ease-out;
-        box-shadow: 0 10px 20px rgba(15, 23, 42, 0.3);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
       }
 
       .button:hover {
         transform: translateY(-1px);
-        box-shadow: 0 15px 30px rgba(15, 23, 42, 0.35);
-        background: #020617;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.6);
+        background: #0a84e8;
       }
 
       .button:active {
         transform: translateY(0);
-        box-shadow: 0 6px 14px rgba(15, 23, 42, 0.25);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
       }
 
       .button:disabled {
-        opacity: 0.6;
+        opacity: 0.55;
         cursor: default;
         transform: none;
         box-shadow: none;
@@ -100,95 +110,122 @@
 
       .hint {
         font-size: 0.8rem;
-        color: #6b7280;
-        margin-top: 8px;
+        color: #a3a3a3;
+        margin-top: 10px;
       }
     </style>
   </head>
+
   <body>
     <div class="card">
+      <div class="logo">
+        <img src="SquareLogo.png" alt="SimRacingPlatform logo" />
+      </div>
+
       <h1>Email verification</h1>
-      <p class="status loading" id="status">
-        Verifying your email, please wait…
-      </p>
+      <p class="status loading" id="status">Verifying your email, please wait…</p>
 
       <button class="button" id="open-app-btn" disabled>
         Open SimRacingPlatform
       </button>
 
-      <p class="hint" id="hint">
-        We’ll enable the button once your email is confirmed.
-      </p>
+      <p class="hint" id="hint">We’ll enable the button once your email is confirmed.</p>
     </div>
 
     <script type="module">
-      // 1. Firebase imports (modular SDK)
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
-      import {
-        getAuth,
-        applyActionCode,
-      } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
-
-      // 2. TODO: Put YOUR Firebase config here
-      //    (same project as the one sending the email verification links)
-      const firebaseConfig = {
-        apiKey: "AIzaSyAQoyg7y5OmivRsyOyy2eT7qUfFT16VI_M",
-        authDomain: "simracingplatform-1370c.firebaseapp.com",
-        projectId: "simracingplatform-1370c",
-        // etc. (copy from Firebase console → Project settings → General)
-      };
-
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-
       const statusEl = document.getElementById("status");
       const buttonEl = document.getElementById("open-app-btn");
       const hintEl = document.getElementById("hint");
 
+      function setError(message, hint) {
+        statusEl.textContent = message;
+        statusEl
+
+        statusEl.className = "status error";
+        hintEl.textContent = hint ?? "Please try again.";
+        buttonEl.disabled = true;
+      }
+
+      // If the module fails to load, you won't reach here. But for runtime errors:
+      window.addEventListener("error", (e) => {
+        console.error("Window error:", e.error || e.message);
+        setError(
+          "Something went wrong on this page.",
+          "Open the browser console for details (often an extension blocks Firebase scripts)."
+        );
+      });
+
+      window.addEventListener("unhandledrejection", (e) => {
+        console.error("Unhandled rejection:", e.reason);
+        setError(
+          "Could not verify your email.",
+          "The verification request failed unexpectedly. Please try again or request a new email."
+        );
+      });
+
       buttonEl.addEventListener("click", () => {
-        // Custom URI that your WinUI3 app handles
         window.location.href = "simracingplatform://verified";
       });
 
       function getQueryParam(name) {
-        const params = new URLSearchParams(window.location.search);
-        return params.get(name);
+        return new URLSearchParams(window.location.search).get(name);
       }
+
+      // Timeout so it never hangs silently
+      const timeoutId = setTimeout(() => {
+        setError(
+          "Verification is taking too long.",
+          "This is usually caused by a blocked Firebase script (adblock/firewall) or a network issue."
+        );
+      }, 10000);
+
+      // Firebase imports
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+      import { getAuth, applyActionCode } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAQoyg7y5OmivRsyOyy2eT7qUfFT16VI_M",
+        authDomain: "simracingplatform-1370c.firebaseapp.com",
+        projectId: "simracingplatform-1370c",
+      };
 
       async function handleEmailVerification() {
         const mode = getQueryParam("mode");
         const oobCode = getQueryParam("oobCode");
 
         if (mode !== "verifyEmail" || !oobCode) {
-          statusEl.textContent = "Invalid or malformed verification link.";
-          statusEl.className = "status error";
-          hintEl.textContent =
-            "Please open the link from your latest verification email.";
+          clearTimeout(timeoutId);
+          setError(
+            "Invalid or malformed verification link.",
+            "Please open the link from your latest verification email."
+          );
           return;
         }
 
         try {
+          const app = initializeApp(firebaseConfig);
+          const auth = getAuth(app);
+
           await applyActionCode(auth, oobCode);
 
-          // ✅ Success
+          clearTimeout(timeoutId);
           statusEl.textContent = "Your email has been successfully verified.";
           statusEl.className = "status success";
-          hintEl.textContent =
-            "You can now return to the SimRacingPlatform app.";
+          hintEl.textContent = "You can now return to the SimRacingPlatform app.";
           buttonEl.disabled = false;
 
-          // Optional: also auto-redirect after a short delay:
-          // setTimeout(() => {
-          //   window.location.href = "simracingplatform://verified";
-          // }, 1500);
+          // Optional auto-redirect:
+          // setTimeout(() => (window.location.href = "simracingplatform://verified"), 1200);
         } catch (error) {
-          console.error(error);
-          statusEl.textContent =
-            "This verification link is invalid or has expired.";
-          statusEl.className = "status error";
-          hintEl.textContent =
-            "Request a new verification email from inside the app.";
-          buttonEl.disabled = true;
+          clearTimeout(timeoutId);
+          console.error("applyActionCode error:", error);
+
+          // Helpful message for common Firebase errors:
+          // auth/expired-action-code, auth/invalid-action-code, auth/user-disabled, etc.
+          setError(
+            "This verification link is invalid or has expired.",
+            "Request a new verification email from inside the app."
+          );
         }
       }
 
