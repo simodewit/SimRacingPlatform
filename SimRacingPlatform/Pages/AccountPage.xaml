@@ -28,7 +28,7 @@
                             <!-- Avatar -->
                             <Ellipse x:Name="AvatarEllipse" Width="72" Height="72">
                                 <Ellipse.Fill>
-                                    <!-- Bind to ProfileImage on DataContext (AccountViewModel) -->
+                                    <!-- Bind to ProfileImage on DataContext (UserSessionViewModel) -->
                                     <ImageBrush ImageSource="{Binding ProfileImage}"
                                                 Stretch="UniformToFill"/>
                                 </Ellipse.Fill>
@@ -53,7 +53,7 @@
                                 </Grid>
                             </Border>
 
-                            <!-- Visual states must be inside the root element of the template -->
+                            <!-- Visual states -->
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal"/>
@@ -135,17 +135,21 @@
                             <Grid>
                                 <Button Width="72" Height="72"
                                         CornerRadius="36"
-                                        DataContext="{x:Bind ViewModel}"
                                         Click="ChangePhoto_Click"
                                         ToolTipService.ToolTip="Change profile picture"
-                                        Style="{StaticResource AvatarButtonStyle}"/>
+                                        Style="{StaticResource AvatarButtonStyle}"
+                                        DataContext="{x:Bind Session, Mode=OneWay}"/>
                             </Grid>
 
-                            <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
-                                <TextBlock Text="{x:Bind ViewModel.DisplayName}"
+                            <StackPanel Grid.Column="1"
+                                        VerticalAlignment="Center"
+                                        Spacing="2">
+                                <!-- Bind to shared session VM -->
+                                <TextBlock Text="{x:Bind Session.DisplayName, Mode=OneWay}"
                                            FontSize="18"
                                            FontWeight="SemiBold"/>
-                                <TextBlock Text="{x:Bind ViewModel.Email}" Opacity="0.75"/>
+                                <TextBlock Text="{x:Bind Session.Email, Mode=OneWay}"
+                                           Opacity="0.75"/>
                             </StackPanel>
                         </Grid>
 
@@ -155,7 +159,8 @@
                         <StackPanel Spacing="10">
                             <TextBlock Text="Security" FontSize="16" FontWeight="SemiBold"/>
 
-                            <Button Click="ChangePassword_Click" HorizontalAlignment="Stretch">
+                            <Button Click="ChangePassword_Click"
+                                    HorizontalAlignment="Stretch">
                                 <StackPanel Orientation="Horizontal" Spacing="10">
                                     <FontIcon Glyph="&#xE72E;" FontFamily="Segoe MDL2 Assets"/>
                                     <TextBlock Text="Change password"/>

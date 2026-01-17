@@ -2,6 +2,7 @@ using Firebase.Auth;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using SimRacingPlatform.Services;
 using SimRacingPlatform.Utilities;
 using SimRacingPlatform.Windows;
 using System;
@@ -69,6 +70,8 @@ namespace SimRacingPlatform.Pages
                 }
                 else
                 {
+                    await UserSessionService.RefreshFromCurrentUserAsync();
+
                     RunOnUIThread(() =>
                         MainWindow.Instance.NavigateTo(typeof(LandingPage)));
                 }

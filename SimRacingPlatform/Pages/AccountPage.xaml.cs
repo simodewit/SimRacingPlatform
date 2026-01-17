@@ -2,12 +2,11 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
+using SimRacingPlatform.Services;
 using SimRacingPlatform.Utilities;
+using SimRacingPlatform.ViewModels;
 using SimRacingPlatform.Windows;
 using System;
-using System.ComponentModel;
-using System.IO;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -17,14 +16,14 @@ namespace SimRacingPlatform.Pages
 {
     public sealed partial class AccountPage : Page
     {
-        public AccountViewModel ViewModel { get; } = new();
+        public UserSessionViewModel Session => UserSessionViewModel.Instance;
 
         public AccountPage()
         {
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs args)
+        protected override async void OnNavigatedTo(NavigationEventArgs args)
         {
             base.OnNavigatedTo(args);
 
@@ -34,27 +33,6 @@ namespace SimRacingPlatform.Pages
                 MainWindow.Instance.NavigateTo(typeof(LoginPage));
                 return;
             }
-
-            ViewModel.Email = user.Info.Email;
-            ViewModel.DisplayName = user.Info.DisplayName;
-            ViewModel.Uid = user.Uid;
-
-            // 1) Instant load: use cached avatar URL if we have one
-            var cachedUrl = FirebaseUtility.Instance.TryGetCachedProfilePhotoUrl();
-            if (!string.IsNullOrWhiteSpace(cachedUrl))
-            {
-                try
-                {
-                    ViewModel.ProfileImage = new BitmapImage(new Uri(cachedUrl));
-                }
-                catch
-                {
-                    // If something goes wrong, we just keep the default image.
-                }
-            }
-
-            // 2) Then refresh in background (multi-device, first run, etc.)
-            _ = LoadProfileImageAsync();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -83,10 +61,7 @@ namespace SimRacingPlatform.Pages
 
             var result = await WindowUtility.ShowContentDialogAsync(() =>
             {
-                var panel = new StackPanel
-                {
-                    Spacing = 8
-                };
+                var panel = new StackPanel { Spacing = 8 };
                 panel.Children.Add(oldPasswordBox);
                 panel.Children.Add(newPasswordBox);
                 panel.Children.Add(confirmPasswordBox);
@@ -102,9 +77,7 @@ namespace SimRacingPlatform.Pages
             });
 
             if (result != ContentDialogResult.Primary)
-            {
                 return;
-            }
 
             var oldPassword = oldPasswordBox.Password;
             var newPassword = newPasswordBox.Password;
@@ -149,6 +122,7 @@ namespace SimRacingPlatform.Pages
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             FirebaseUtility.Instance.Logout();
+            UserSessionService.ClearSession();
             MainWindow.Instance.NavigateTo(typeof(LoginPage));
         }
 
@@ -156,7 +130,6 @@ namespace SimRacingPlatform.Pages
         {
             try
             {
-                // File picker must be created on the UI thread
                 var picker = new FileOpenPicker
                 {
                     SuggestedStartLocation = PickerLocationId.PicturesLibrary,
@@ -168,7 +141,6 @@ namespace SimRacingPlatform.Pages
                 picker.FileTypeFilter.Add(".png");
                 picker.FileTypeFilter.Add(".webp");
 
-                // WinUI 3: initialize picker with window handle
                 var hwnd = WindowNative.GetWindowHandle(MainWindow.Instance);
                 InitializeWithWindow.Initialize(picker, hwnd);
 
@@ -176,28 +148,27 @@ namespace SimRacingPlatform.Pages
                 if (file is null)
                     return;
 
-                // Upload to Firebase Storage (can run off the UI thread)
+                // Upload + get download URL
                 string downloadUrl = await FirebaseUtility.Instance.UploadAndSetProfilePhotoAsync(file);
 
+                // Save local cache
                 await FirebaseUtility.Instance.SaveCachedProfilePhotoUrlAsync(downloadUrl);
 
-                // Build a cache-busted URL *without* breaking existing query parameters
+                // cache-bust for the BitmapImage refresh
                 string uriString = downloadUrl;
                 string separator = uriString.Contains("?") ? "&" : "?";
                 uriString += $"{separator}t={DateTimeOffset.UtcNow.ToUnixTimeSeconds()}";
 
-                // Update UI on the UI thread
                 DispatcherQueue.TryEnqueue(async () =>
                 {
-                    ViewModel.ProfileImage = new BitmapImage(new Uri(uriString));
-                    await WindowUtility.ShowMessageAsync(
-                        "Profile updated",
-                        "Your profile picture has been changed.");
+                    // Update shared session image; sidebar + this page will reflect it
+                    Session.ProfileImage = new BitmapImage(new Uri(uriString));
+
+                    await WindowUtility.ShowMessageAsync("Profile updated", "Your profile picture has been changed.");
                 });
             }
             catch (Exception ex)
             {
-                // Also show error dialog on the UI thread
                 DispatcherQueue.TryEnqueue(async () =>
                 {
                     await WindowUtility.ShowMessageAsync(
@@ -227,6 +198,7 @@ namespace SimRacingPlatform.Pages
                 try
                 {
                     await FirebaseUtility.Instance.DeleteCurrentUserAsync();
+                    UserSessionService.ClearSession();
                     MainWindow.Instance.NavigateTo(typeof(LoginPage));
                 }
                 catch (Exception ex)
@@ -242,71 +214,6 @@ namespace SimRacingPlatform.Pages
                     await errorDialog.ShowAsync();
                 }
             }
-        }
-
-        private async Task LoadProfileImageAsync()
-        {
-            try
-            {
-                // Ask Firebase for the current "truth" (Auth or Storage)
-                var photoUrl = await FirebaseUtility.Instance.GetProfilePhotoUrlAsync();
-                if (string.IsNullOrWhiteSpace(photoUrl))
-                    return;
-
-                // Keep cache in sync
-                await FirebaseUtility.Instance.SaveCachedProfilePhotoUrlAsync(photoUrl);
-
-                var uri = new Uri(photoUrl);
-
-                // Update UI on the UI thread
-                DispatcherQueue.TryEnqueue(() =>
-                {
-                    ViewModel.ProfileImage = new BitmapImage(uri);
-                });
-            }
-            catch
-            {
-                // Silently keep whatever we already display
-            }
-        }
-    }
-
-    public class AccountViewModel : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        private void Raise([CallerMemberName] string? name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        // CHANGED: make ProfileImage settable so UI can update after upload
-        private BitmapImage _profileImage = new BitmapImage(new Uri("ms-appx:///Assets/SquareLogo.png"));
-        public BitmapImage ProfileImage
-        {
-            get => _profileImage;
-            set { _profileImage = value; Raise(); }
-        }
-
-        private string _displayName = "";
-        public string DisplayName
-        {
-            get => _displayName;
-            set { _displayName = value; Raise(); }
-        }
-
-        private string _email = "";
-        public string Email
-        {
-            get => _email;
-            set { _email = value; Raise(); }
-        }
-
-        private string _uid = "";
-        public string Uid
-        {
-            get => _uid;
-            set { _uid = value; Raise(); }
         }
     }
 }

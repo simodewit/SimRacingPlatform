@@ -2,20 +2,19 @@ using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using Windows.UI;
 using SimRacingPlatform.Windows;
+using Windows.UI;
 
 namespace SimRacingPlatform.Pages
 {
-    public sealed partial class Sidebar : UserControl
+    public sealed partial class SideBar : UserControl
     {
         public SolidColorBrush ScrollAreaBackgroundBrush { get; private set; } = new SolidColorBrush();
 
-        public Sidebar()
+        public SideBar()
         {
             InitializeComponent();
             UpdateScrollAreaBrush();
-
             ActualThemeChanged += (_, __) => UpdateScrollAreaBrush();
         }
 
@@ -51,7 +50,7 @@ namespace SimRacingPlatform.Pages
         private void FirstTool_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Instance.NavigateTo(typeof(Tool1));
-        } 
+        }
 
         private void SecondTool_Click(object sender, RoutedEventArgs e)
         {

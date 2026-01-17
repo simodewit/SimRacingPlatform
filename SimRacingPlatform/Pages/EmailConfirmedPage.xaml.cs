@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using SimRacingPlatform.Services;
 using SimRacingPlatform.Windows;
 using System;
 using System.ComponentModel;
@@ -67,8 +68,9 @@ namespace SimRacingPlatform.Pages
             }
         }
 
-        private void RedirectUser()
+        private async void RedirectUser()
         {
+            await UserSessionService.RefreshFromCurrentUserAsync();
             MainWindow.Instance.NavigateTo(typeof(LandingPage));
         }
     }

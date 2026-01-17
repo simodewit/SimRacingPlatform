@@ -1,6 +1,7 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SimRacingPlatform.Pages;
+using SimRacingPlatform.Services;
 using SimRacingPlatform.Utilities;
 using System;
 
@@ -13,7 +14,7 @@ namespace SimRacingPlatform.Windows
         public bool CanGoBack => ContentFrame.CanGoBack;
 
         private static readonly Type[] AuthPages =
-{
+        {
             typeof(LoginPage),
             typeof(RegisterPage),
             typeof(VerifyEmailPage),
@@ -33,7 +34,6 @@ namespace SimRacingPlatform.Windows
             WindowUtility.SetTitleBarColors(this);
 
             ContentFrame.Navigated += ContentFrame_Navigated;
-
             ContentFrame.Loaded += MainWindow_Loaded;
         }
 
@@ -43,6 +43,8 @@ namespace SimRacingPlatform.Windows
 
             if (user == null)
             {
+                // No authenticated user -> clear session + go to login
+                UserSessionService.ClearSession();
                 NavigateTo(typeof(LoginPage));
                 return;
             }
@@ -54,18 +56,23 @@ namespace SimRacingPlatform.Windows
             }
             catch
             {
+                // On error, assume not verified / invalid, log out + clear
                 isVerified = false;
                 FirebaseUtility.Instance.Logout();
+                UserSessionService.ClearSession();
                 NavigateTo(typeof(LoginPage));
                 return;
             }
 
             if (!isVerified)
             {
+                UserSessionService.ClearSession();
                 NavigateTo(typeof(VerifyEmailPage));
             }
             else
             {
+                // Centralized session initialization (safe on UI thread via the service)
+                await UserSessionService.RefreshFromCurrentUserAsync();
                 NavigateTo(typeof(LandingPage));
             }
         }

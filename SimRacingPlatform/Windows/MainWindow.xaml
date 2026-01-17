@@ -18,7 +18,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <views:Sidebar x:Name="SidebarControl" Grid.Column="0"/>
+        <views:SideBar x:Name="SidebarControl" Grid.Column="0"/>
 
         <Frame x:Name="ContentFrame"
            Grid.Column="1"/>
